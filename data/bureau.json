@@ -1,0 +1,26 @@
+{
+  "APP-CLEAN": {
+    "prior_claims": 0,
+    "credit_band": "excellent",
+    "occupation_class": "low",
+    "flood_zone": false
+  },
+  "APP-COAST": {
+    "prior_claims": 2,
+    "credit_band": "fair",
+    "occupation_class": "high",
+    "flood_zone": true
+  },
+  "APP-THIN": {
+    "prior_claims": 0,
+    "credit_band": "unknown",
+    "occupation_class": "medium",
+    "flood_zone": false
+  },
+  "APP-TIMEOUT": {
+    "prior_claims": 0,
+    "credit_band": "good",
+    "occupation_class": "low",
+    "flood_zone": false
+  }
+}

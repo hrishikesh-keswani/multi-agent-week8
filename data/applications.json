@@ -1,0 +1,14 @@
+[
+  {
+    "applicant_id": "APP-CLEAN",
+    "submission": "Hi, I'm Maya Chen, 29, software engineer in Ohio. I rent an apartment and want $100,000 of renters insurance. No prior claims. Non-smoker, single household."
+  },
+  {
+    "applicant_id": "APP-COAST",
+    "submission": "Robert Hale, age 58, commercial fisherman, wants $1,200,000 homeowners on a beach house in Florida. Two water claims in the last three years. Property is in a flood zone."
+  },
+  {
+    "applicant_id": "APP-THIN",
+    "submission": "Applicant Jordan Lee is asking for coverage. Occupation might be roofing. State not provided. Coverage amount left blank. Age unknown."
+  }
+]
