@@ -1,4 +1,4 @@
-"""Run APP-TIMEOUT through the real pipeline and escalate when scoring times out.
+"""Run the timeout SSN through the real pipeline and escalate when scoring times out.
 
 Intake and enrichment call Ollama. The risk-scoring client call raises
 TimeoutError. This applicant is intentionally absent from the normal case list.
@@ -15,10 +15,9 @@ from underwriting.pipeline import run_pipeline
 from underwriting.tracing import format_trace
 
 APP_TIMEOUT = {
-    "applicant_id": "APP-TIMEOUT",
     "submission": (
         "Alex Rivera, 41, accountant in Illinois, requesting $250,000 renters coverage. "
-        "No claims mentioned."
+        "No claims mentioned. SSN 900-10-0099."
     ),
 }
 
@@ -28,7 +27,7 @@ def main() -> int:
     case = run_pipeline(APP_TIMEOUT, client)
     print(format_trace(case))
     FAILURE_TRACE_DIR.mkdir(parents=True, exist_ok=True)
-    path = FAILURE_TRACE_DIR / "APP-TIMEOUT.json"
+    path = FAILURE_TRACE_DIR / "900-10-0099.json"
     path.write_text(json.dumps(case.to_document(), indent=2) + "\n", encoding="utf-8")
     print("wrote {0}".format(path))
     print("status={0}".format(case.status))

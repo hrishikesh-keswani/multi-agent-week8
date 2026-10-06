@@ -1,14 +1,62 @@
 [
   {
-    "applicant_id": "APP-CLEAN",
-    "submission": "Hi, I'm Maya Chen, 29, software engineer in Ohio. I rent an apartment and want $100,000 of renters insurance. No prior claims. Non-smoker, single household."
+    "submission": "Priya Shah, 31, librarian in Vermont. Renting an apartment and requesting $75,000 of renters insurance. No prior claims. Single household, non-smoker. SSN 900-01-0001."
   },
   {
-    "applicant_id": "APP-COAST",
-    "submission": "Robert Hale, age 58, commercial fisherman, wants $1,200,000 homeowners on a beach house in Florida. Two water claims in the last three years. Property is in a flood zone."
+    "submission": "Daniel Okonkwo, 44, high school teacher in Wisconsin. Wants $320,000 homeowners on a primary residence. No claims in the last ten years. Married, two children. SSN 900-01-0002."
   },
   {
-    "applicant_id": "APP-THIN",
-    "submission": "Applicant Jordan Lee is asking for coverage. Occupation might be roofing. State not provided. Coverage amount left blank. Age unknown."
+    "submission": "Elena Vasquez, 27, registered nurse in Colorado. Asking for $50,000 renters coverage on a leased condo. Clean claims history. Lives alone. SSN 900-01-0003."
+  },
+  {
+    "submission": "Marcus Hale, 38, accountant in Minnesota. Homeowners policy for $410,000 on a suburban house. No prior claims. Non-smoker, spouse and one child. SSN 900-01-0004."
+  },
+  {
+    "submission": "Hannah Brooks, 52, pharmacist in Oregon. Requesting $280,000 homeowners. No water, fire, or theft claims. Two-person household. SSN 900-01-0005."
+  },
+  {
+    "submission": "Owen Patel, 24, graphic designer in Washington. Renters insurance for $40,000. No prior claims. Roommate household of two. SSN 900-01-0006."
+  },
+  {
+    "submission": "Ruth Nguyen, 63, retired schoolteacher in Iowa. Wants $190,000 homeowners on a paid-off house. No claims. Lives with spouse. SSN 900-01-0007."
+  },
+  {
+    "submission": "Chris Alvarez, 35, software developer in Utah. Renting and requesting $90,000 renters coverage. No claims. Single household. SSN 900-01-0008."
+  },
+  {
+    "submission": "Robert Hale, 58, commercial fisherman in Florida. Wants $1,200,000 homeowners on a beach house. Two water claims in the last three years. Property is in a flood zone. SSN 900-01-0009."
+  },
+  {
+    "submission": "Sandra Cho, 49, charter boat operator in Louisiana. Requesting $950,000 homeowners on a coastal property with one flood claim last year. Flood zone. SSN 900-01-0010."
+  },
+  {
+    "submission": "Victor Ramos, 46, roofing contractor in Texas. Homeowners for $800,000. Three wind and hail claims in five years. Fair credit mentioned on the form. SSN 900-01-0011."
+  },
+  {
+    "submission": "Irene Kowalski, 61, owns a waterfront rental in South Carolina. Seeking $1,500,000 coverage. Two prior water claims. The house sits in a flood zone. SSN 900-01-0012."
+  },
+  {
+    "submission": "Malik Bryant, 41, commercial diver in Mississippi. Wants $700,000 homeowners. One recent flood claim and a theft claim. High-risk occupation. SSN 900-01-0013."
+  },
+  {
+    "submission": "Paula Griffin, 55, fishing guide in North Carolina. Beach cottage, $1,100,000 homeowners requested. Two water claims. Flood zone confirmed. SSN 900-01-0014."
+  },
+  {
+    "submission": "Applicant Jordan Lee is asking for coverage. Occupation might be roofing. State not provided. Coverage amount left blank. Age unknown. SSN 900-01-0015."
+  },
+  {
+    "submission": "Name on the form is Samir Qureshi. He wrote 'need insurance' and left age, state, occupation, and coverage amount blank. SSN 900-01-0016."
+  },
+  {
+    "submission": "Taylor Morgan called about a policy. No age, no address, no coverage type, and no amount. Occupation field says 'not sure'. SSN 900-01-0017."
+  },
+  {
+    "submission": "Application for Casey Nguyen. State missing. Coverage amount blank. Age not given. Mentions an apartment but not the coverage type. SSN 900-01-0018."
+  },
+  {
+    "submission": "Robin Blake wants homeowners insurance. Age unknown, state unknown, coverage amount left blank. Occupation might be construction. SSN 900-01-0019."
+  },
+  {
+    "submission": "Form received for Avery Santos. Only the name is filled in. Age, occupation, state, coverage type, and coverage amount are all blank. SSN 900-01-0020."
   }
 ]

@@ -1,23 +1,143 @@
 {
-  "APP-CLEAN": {
+  "900-01-0001": {
     "prior_claims": 0,
     "credit_band": "excellent",
     "occupation_class": "low",
     "flood_zone": false
   },
-  "APP-COAST": {
+  "900-01-0002": {
+    "prior_claims": 0,
+    "credit_band": "excellent",
+    "occupation_class": "low",
+    "flood_zone": false
+  },
+  "900-01-0003": {
+    "prior_claims": 0,
+    "credit_band": "good",
+    "occupation_class": "low",
+    "flood_zone": false
+  },
+  "900-01-0004": {
+    "prior_claims": 0,
+    "credit_band": "excellent",
+    "occupation_class": "low",
+    "flood_zone": false
+  },
+  "900-01-0005": {
+    "prior_claims": 0,
+    "credit_band": "good",
+    "occupation_class": "low",
+    "flood_zone": false
+  },
+  "900-01-0006": {
+    "prior_claims": 0,
+    "credit_band": "good",
+    "occupation_class": "low",
+    "flood_zone": false
+  },
+  "900-01-0007": {
+    "prior_claims": 0,
+    "credit_band": "excellent",
+    "occupation_class": "low",
+    "flood_zone": false
+  },
+  "900-01-0008": {
+    "prior_claims": 0,
+    "credit_band": "good",
+    "occupation_class": "low",
+    "flood_zone": false
+  },
+  "900-01-0009": {
     "prior_claims": 2,
     "credit_band": "fair",
     "occupation_class": "high",
     "flood_zone": true
   },
-  "APP-THIN": {
+  "900-01-0010": {
+    "prior_claims": 1,
+    "credit_band": "fair",
+    "occupation_class": "high",
+    "flood_zone": true
+  },
+  "900-01-0011": {
+    "prior_claims": 3,
+    "credit_band": "fair",
+    "occupation_class": "high",
+    "flood_zone": false
+  },
+  "900-01-0012": {
+    "prior_claims": 2,
+    "credit_band": "poor",
+    "occupation_class": "medium",
+    "flood_zone": true
+  },
+  "900-01-0013": {
+    "prior_claims": 2,
+    "credit_band": "fair",
+    "occupation_class": "high",
+    "flood_zone": true
+  },
+  "900-01-0014": {
+    "prior_claims": 2,
+    "credit_band": "fair",
+    "occupation_class": "high",
+    "flood_zone": true
+  },
+  "900-01-0015": {
     "prior_claims": 0,
     "credit_band": "unknown",
     "occupation_class": "medium",
     "flood_zone": false
   },
-  "APP-TIMEOUT": {
+  "900-01-0016": {
+    "prior_claims": 0,
+    "credit_band": "unknown",
+    "occupation_class": "unknown",
+    "flood_zone": false
+  },
+  "900-01-0017": {
+    "prior_claims": 0,
+    "credit_band": "unknown",
+    "occupation_class": "unknown",
+    "flood_zone": false
+  },
+  "900-01-0018": {
+    "prior_claims": 0,
+    "credit_band": "unknown",
+    "occupation_class": "low",
+    "flood_zone": false
+  },
+  "900-01-0019": {
+    "prior_claims": 1,
+    "credit_band": "unknown",
+    "occupation_class": "high",
+    "flood_zone": false
+  },
+  "900-01-0020": {
+    "prior_claims": 0,
+    "credit_band": "unknown",
+    "occupation_class": "unknown",
+    "flood_zone": false
+  },
+  "900-10-0001": {
+    "prior_claims": 0,
+    "credit_band": "excellent",
+    "occupation_class": "low",
+    "flood_zone": false
+  },
+  "900-10-0002": {
+    "prior_claims": 2,
+    "credit_band": "fair",
+    "occupation_class": "high",
+    "flood_zone": true
+  },
+  "900-10-0003": {
+    "prior_claims": 0,
+    "credit_band": "unknown",
+    "occupation_class": "medium",
+    "flood_zone": false
+  },
+  "900-10-0099": {
     "prior_claims": 0,
     "credit_band": "good",
     "occupation_class": "low",
