@@ -8,7 +8,7 @@ from typing import Any, Dict, List, Optional
 from underwriting.llm import LLMResponse
 
 PROFILES: Dict[str, Dict[str, Any]] = {
-    "APP-CLEAN": {
+    "900-10-0001": {
         "full_name": "Maya Chen",
         "age": 29,
         "occupation": "software engineer",
@@ -27,7 +27,7 @@ PROFILES: Dict[str, Dict[str, Any]] = {
         "decision": "approve",
         "rationale": "Complete file and a low risk score.",
     },
-    "APP-COAST": {
+    "900-10-0002": {
         "full_name": "Robert Hale",
         "age": 58,
         "occupation": "commercial fisherman",
@@ -46,7 +46,7 @@ PROFILES: Dict[str, Dict[str, Any]] = {
         "decision": "approve",
         "rationale": "The model approved despite the risk factors.",
     },
-    "APP-THIN": {
+    "900-10-0003": {
         "full_name": "Jordan Lee",
         "age": None,
         "occupation": "roofing",
@@ -65,7 +65,7 @@ PROFILES: Dict[str, Dict[str, Any]] = {
         "decision": "refer",
         "rationale": "The file is incomplete.",
     },
-    "APP-TIMEOUT": {
+    "900-10-0099": {
         "full_name": "Alex Rivera",
         "age": 41,
         "occupation": "accountant",
@@ -96,11 +96,11 @@ class FakeLLM:
     def complete(self, *, agent: str, system: str, user: str) -> LLMResponse:
         del system
         self.calls.append(agent)
-        applicant_id = _applicant_id(user)
-        profile = PROFILES[applicant_id]
+        ssn = _ssn(user)
+        profile = PROFILES[ssn]
         if agent == "intake":
             content = {
-                "applicant_id": applicant_id,
+                "ssn": ssn,
                 "full_name": profile["full_name"],
                 "age": profile["age"],
                 "occupation": profile["occupation"],
@@ -138,19 +138,19 @@ class FakeLLM:
         )
 
 
-def _applicant_id(user: str) -> str:
+def _ssn(user: str) -> str:
     payload = json.loads(user)
     found = _walk(payload)
     if not found:
-        raise KeyError("fake client could not find applicant_id")
+        raise KeyError("fake client could not find ssn")
     return found
 
 
 def _walk(value: Any) -> Optional[str]:
     if isinstance(value, dict):
-        applicant_id = value.get("applicant_id")
-        if isinstance(applicant_id, str):
-            return applicant_id
+        ssn = value.get("ssn")
+        if isinstance(ssn, str):
+            return ssn
         for nested in value.values():
             found = _walk(nested)
             if found:

@@ -1,4 +1,4 @@
-"""Retry-then-escalate, including the deterministic APP-TIMEOUT path."""
+"""Retry-then-escalate, including the deterministic timeout SSN path."""
 
 from underwriting.llm import TimeoutInjectingClient
 from underwriting.paths import DATA_DIR, ROOT
@@ -6,10 +6,9 @@ from underwriting.pipeline import run_pipeline
 from tests.fakes import FakeLLM
 
 APP_TIMEOUT = {
-    "applicant_id": "APP-TIMEOUT",
     "submission": (
         "Alex Rivera, 41, accountant in Illinois, requesting $250,000 renters coverage. "
-        "No claims mentioned."
+        "No claims mentioned. SSN 900-10-0099."
     ),
 }
 
@@ -50,6 +49,6 @@ def test_failure_of_any_agent_escalates_and_stops():
 def test_timeout_applicant_stays_out_of_the_normal_run():
     applications = (DATA_DIR / "applications.json").read_text(encoding="utf-8")
     run_cases = (ROOT / "run_cases.py").read_text(encoding="utf-8")
-    assert "APP-TIMEOUT" not in applications
-    assert "APP-TIMEOUT" not in run_cases
+    assert "900-10-0099" not in applications
+    assert "900-10-0099" not in run_cases
     assert "warm" in run_cases.lower()

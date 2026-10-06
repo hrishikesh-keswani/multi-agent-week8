@@ -21,7 +21,7 @@ DECISIONS = ("approve", "deny", "refer")
 
 INTAKE_SYSTEM = """You normalize an insurance application into one JSON object.
 Use these keys only:
-applicant_id (string),
+ssn (string, copied from the application),
 full_name (string or null),
 age (number or null),
 occupation (string or null),
@@ -66,9 +66,8 @@ def intake_agent(case: CaseRecord, llm: Any) -> CaseRecord:
     )
     _remember_usage(case, response)
     content = response.content
-    applicant_id = _text(_field(content, "applicant_id")) or case.case_id
     case.intake = {
-        "applicant_id": applicant_id,
+        "ssn": case.case_id,
         "full_name": _text(_field(content, "full_name")),
         "age": _optional_number(_field(content, "age")),
         "occupation": _text(_field(content, "occupation")),
@@ -86,8 +85,8 @@ def intake_agent(case: CaseRecord, llm: Any) -> CaseRecord:
 def enrichment_agent(case: CaseRecord, llm: Any) -> CaseRecord:
     if not case.intake:
         raise ValueError("enrichment requires intake")
-    applicant_id = str(case.intake.get("applicant_id") or case.case_id)
-    bureau = lookup_bureau(applicant_id)
+    ssn = str(case.intake.get("ssn") or case.case_id)
+    bureau = lookup_bureau(ssn)
     response = llm.complete(
         agent="enrichment",
         system=ENRICHMENT_SYSTEM,
@@ -96,7 +95,7 @@ def enrichment_agent(case: CaseRecord, llm: Any) -> CaseRecord:
     _remember_usage(case, response)
     content = response.content
     case.enrichment = {
-        "applicant_id": applicant_id,
+        "ssn": ssn,
         "bureau": bureau,
         "summary": _text(_field(content, "summary")) or "",
         "red_flags": _string_list(_field(content, "red_flags")),

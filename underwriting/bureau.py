@@ -1,4 +1,4 @@
-"""Deterministic third-party stand-in keyed by applicant id."""
+"""Deterministic third-party stand-in keyed by SSN."""
 
 from __future__ import annotations
 
@@ -10,9 +10,9 @@ from underwriting.paths import DATA_DIR
 _CACHE: Dict[str, Any] = {}
 
 
-def lookup_bureau(applicant_id: str) -> Dict[str, Any]:
+def lookup_bureau(ssn: str) -> Dict[str, Any]:
     records = _load()
-    record = records.get(applicant_id)
+    record = records.get(ssn)
     if not isinstance(record, dict):
         return {
             "found": False,
@@ -32,6 +32,6 @@ def _load() -> Dict[str, Any]:
         with path.open(encoding="utf-8") as handle:
             loaded = json.load(handle)
         if not isinstance(loaded, dict):
-            raise ValueError("bureau.json must be an object keyed by applicant id")
+            raise ValueError("bureau.json must be an object keyed by SSN")
         _CACHE.update(loaded)
     return _CACHE

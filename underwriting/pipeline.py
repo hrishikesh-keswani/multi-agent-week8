@@ -12,6 +12,7 @@ from underwriting.agents import (
     recommendation_agent,
     risk_scoring_agent,
 )
+from underwriting.bureau import lookup_bureau
 from underwriting.state import CaseRecord
 from underwriting.tracing import build_span, snapshot_input, snapshot_output
 
@@ -33,6 +34,8 @@ def run_pipeline(
 ) -> CaseRecord:
     """Run every agent. On a lasting failure, escalate and stop."""
     case = CaseRecord.from_application(raw_application)
+    if not lookup_bureau(case.case_id)["found"]:
+        return _refer_unknown_ssn(case)
     for agent_name, agent_fn in AGENTS:
         case = call_with_retry(
             case,
@@ -100,6 +103,35 @@ def call_with_retry(
             )
         )
         return case
+    return case
+
+
+def _refer_unknown_ssn(case: CaseRecord) -> CaseRecord:
+    """An SSN that is not in the bureau goes to a human. No agent is called."""
+    case.status = "escalated"
+    case.recommendation = {
+        "decision": "refer",
+        "rationale": "SSN {0} is not in the bureau".format(case.case_id),
+        "source": "escalation",
+        "model_decision": None,
+        "final_decision": "refer",
+        "guard_reason": None,
+    }
+    started_at = datetime.now(timezone.utc)
+    case.trace.append(
+        build_span(
+            agent="bureau_lookup",
+            attempt=1,
+            started_at=started_at,
+            duration_ms=0,
+            received={"ssn": case.case_id},
+            output=None,
+            status="escalated",
+            usage={"prompt_tokens": 0, "completion_tokens": 0},
+            error="SSN is not in the bureau",
+            case=case,
+        )
+    )
     return case
 
 

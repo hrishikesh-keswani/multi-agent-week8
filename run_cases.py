@@ -1,4 +1,4 @@
-"""Run the three normal applications and write their traces.
+"""Run every application in data/applications.json and write their traces.
 
 The warm-up call is not traced. It loads the local model so the case timings
 are steady-state generation.

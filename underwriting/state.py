@@ -5,6 +5,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional
 
+from underwriting.ssn import extract_ssn
+
 
 def _usage() -> Dict[str, int]:
     return {"prompt_tokens": 0, "completion_tokens": 0}
@@ -26,10 +28,15 @@ class CaseRecord:
 
     @classmethod
     def from_application(cls, raw: Dict[str, Any]) -> "CaseRecord":
-        applicant_id = raw.get("applicant_id")
-        if not applicant_id:
-            raise ValueError("raw application is missing applicant_id")
-        return cls(case_id=str(applicant_id), raw_application=dict(raw))
+        submission = raw.get("submission")
+        if not isinstance(submission, str) or not submission.strip():
+            raise ValueError("raw application is missing a submission")
+        ssn = extract_ssn(submission)
+        if ssn is None:
+            raise ValueError("submission does not contain an SSN")
+        stored = dict(raw)
+        stored["ssn"] = ssn
+        return cls(case_id=ssn, raw_application=stored)
 
     def to_document(self) -> Dict[str, Any]:
         return {

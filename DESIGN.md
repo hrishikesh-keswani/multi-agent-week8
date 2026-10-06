@@ -49,12 +49,14 @@ flowchart LR
 
 Shared CaseRecord is read and written by every agent.
 
+If the submission contains an SSN that is not a key in the bureau, the case goes to HumanReview immediately and no agent is called.
+
 The failure arrow is drawn from `risk_scoring_agent` because that is the simulated timeout. The same retry-then-escalate path applies to every agent: if intake, enrichment, risk scoring, or recommendation still fails after retries, the case goes to HumanReview and later agents do not run. A normal `decision = refer` from `recommendation_agent` is a second, separate path into HumanReview. That case finished successfully.
 
 ## What each agent reads and writes
 
-- **Intake** reads `raw_application`. Writes `intake`.
-- **Enrichment** reads `intake`, then a local bureau lookup. Writes `enrichment`.
+- **Intake** reads `raw_application`. The case id is the SSN parsed from that submission. Writes `intake`.
+- **Enrichment** reads `intake`, then looks up `data/bureau.json` by that SSN. Writes `enrichment`.
 - **Risk** reads `intake` and `enrichment`. Writes `risk`.
 - **Recommendation** reads `intake`, `enrichment`, and `risk`. Writes `recommendation`.
 
