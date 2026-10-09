@@ -9,6 +9,24 @@ from underwriting.bureau import lookup_bureau
 from underwriting.state import CaseRecord
 
 HIGH_SCORE_APPROVE_LIMIT = 75
+MEDIUM_SCORE_MIN = 35
+_BASE_SCORE = 20
+_CLAIM_POINTS = 15
+_FLOOD_POINTS = 25
+_UNKNOWN_POINTS = 15
+_CREDIT_POINTS = {
+    "excellent": 0,
+    "good": 5,
+    "fair": 20,
+    "poor": 35,
+    "unknown": _UNKNOWN_POINTS,
+}
+_OCCUPATION_POINTS = {
+    "low": 0,
+    "medium": 10,
+    "high": 25,
+    "unknown": _UNKNOWN_POINTS,
+}
 REQUIRED_INTAKE_FIELDS = (
     "full_name",
     "age",
@@ -107,6 +125,36 @@ def enrichment_agent(case: CaseRecord, llm: Any) -> CaseRecord:
     return case
 
 
+def deterministic_score(case: CaseRecord) -> int:
+    """Score the bureau row with fixed points. The model does not choose this number."""
+    bureau = {}
+    if case.enrichment:
+        stored = case.enrichment.get("bureau")
+        if isinstance(stored, dict):
+            bureau = stored
+    claims = _optional_number(bureau.get("prior_claims")) or 0
+    if claims < 0:
+        claims = 0
+    credit = _label(bureau.get("credit_band"))
+    occupation = _label(bureau.get("occupation_class"))
+    total = _BASE_SCORE + (claims * _CLAIM_POINTS)
+    total += _CREDIT_POINTS.get(credit, _UNKNOWN_POINTS)
+    total += _OCCUPATION_POINTS.get(occupation, _UNKNOWN_POINTS)
+    if bureau.get("flood_zone") is True:
+        total += _FLOOD_POINTS
+    if total > 100:
+        return 100
+    return total
+
+
+def band_from_score(score: int) -> str:
+    if score >= HIGH_SCORE_APPROVE_LIMIT:
+        return "high"
+    if score >= MEDIUM_SCORE_MIN:
+        return "medium"
+    return "low"
+
+
 def risk_scoring_agent(case: CaseRecord, llm: Any) -> CaseRecord:
     if not case.intake or not case.enrichment:
         raise ValueError("risk scoring requires intake and enrichment")
@@ -117,14 +165,33 @@ def risk_scoring_agent(case: CaseRecord, llm: Any) -> CaseRecord:
     )
     _remember_usage(case, response)
     content = response.content
-    score = _optional_number(_field(content, "score"))
-    if score is None or score < 0 or score > 100:
+    llm_score = _optional_number(_field(content, "score"))
+    if llm_score is None or llm_score < 0 or llm_score > 100:
         raise ValueError("risk score must be an integer from 0 to 100")
+    code_score = deterministic_score(case)
+    llm_band = band_from_score(llm_score)
+    code_band = band_from_score(code_score)
+    agreed = llm_band == code_band
     case.risk = {
-        "score": score,
-        "band": _band(score, _field(content, "band")),
+        "score": max(llm_score, code_score) if agreed else None,
+        "band": llm_band if agreed else None,
         "factors": _string_list(_field(content, "factors")),
+        "llm_score": llm_score,
+        "llm_band": llm_band,
+        "deterministic_score": code_score,
+        "deterministic_band": code_band,
+        "agreed": agreed,
     }
+    if not agreed:
+        case.status = "escalated"
+        case.recommendation = {
+            "decision": "refer",
+            "rationale": "risk bands disagree: llm={0} deterministic={1}".format(llm_band, code_band),
+            "source": "escalation",
+            "model_decision": None,
+            "final_decision": "refer",
+            "guard_reason": None,
+        }
     return case
 
 
@@ -236,17 +303,10 @@ def _string_list(value: Any) -> List[str]:
     return items
 
 
-def _band(score: int, raw: Any) -> str:
-    text = (_text(raw) or "").lower()
-    if text in {"moderate", "med"}:
-        text = "medium"
-    if text in {"low", "medium", "high"}:
-        return text
-    if score >= HIGH_SCORE_APPROVE_LIMIT:
-        return "high"
-    if score >= 35:
-        return "medium"
-    return "low"
+def _label(value: Any) -> str:
+    if not isinstance(value, str) or not value.strip():
+        return "unknown"
+    return value.strip().lower()
 
 
 def _decision(value: Any) -> Optional[str]:

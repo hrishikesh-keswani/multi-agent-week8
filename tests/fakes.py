@@ -8,7 +8,7 @@ from typing import Any, Dict, List, Optional
 from underwriting.llm import LLMResponse
 
 PROFILES: Dict[str, Dict[str, Any]] = {
-    "900-10-0001": {
+    "900-01-0001": {
         "full_name": "Maya Chen",
         "age": 29,
         "occupation": "software engineer",
@@ -27,7 +27,7 @@ PROFILES: Dict[str, Dict[str, Any]] = {
         "decision": "approve",
         "rationale": "Complete file and a low risk score.",
     },
-    "900-10-0002": {
+    "900-01-0009": {
         "full_name": "Robert Hale",
         "age": 58,
         "occupation": "commercial fisherman",
@@ -46,7 +46,7 @@ PROFILES: Dict[str, Dict[str, Any]] = {
         "decision": "approve",
         "rationale": "The model approved despite the risk factors.",
     },
-    "900-10-0003": {
+    "900-01-0015": {
         "full_name": "Jordan Lee",
         "age": None,
         "occupation": "roofing",

@@ -119,24 +119,6 @@
     "occupation_class": "unknown",
     "flood_zone": false
   },
-  "900-10-0001": {
-    "prior_claims": 0,
-    "credit_band": "excellent",
-    "occupation_class": "low",
-    "flood_zone": false
-  },
-  "900-10-0002": {
-    "prior_claims": 2,
-    "credit_band": "fair",
-    "occupation_class": "high",
-    "flood_zone": true
-  },
-  "900-10-0003": {
-    "prior_claims": 0,
-    "credit_band": "unknown",
-    "occupation_class": "medium",
-    "flood_zone": false
-  },
   "900-10-0099": {
     "prior_claims": 0,
     "credit_band": "good",

@@ -1,0 +1,252 @@
+{
+  "case_id": "900-01-0007",
+  "status": "completed",
+  "raw_application": {
+    "submission": "Ruth Nguyen, 63, retired schoolteacher in Iowa. Wants $190,000 homeowners on a paid-off house. No claims. Lives with spouse. SSN 900-01-0007.",
+    "ssn": "900-01-0007"
+  },
+  "intake": {
+    "ssn": "900-01-0007",
+    "full_name": "Ruth Nguyen",
+    "age": 63,
+    "occupation": "retired schoolteacher",
+    "coverage_type": "homeowners",
+    "coverage_amount": 190000,
+    "state": "Iowa",
+    "household": "spouse",
+    "notes": "Paid-off house. No claims."
+  },
+  "enrichment": {
+    "ssn": "900-01-0007",
+    "bureau": {
+      "found": true,
+      "prior_claims": 0,
+      "credit_band": "excellent",
+      "occupation_class": "low",
+      "flood_zone": false
+    },
+    "summary": "Ruth Nguyen, a 63-year-old retired schoolteacher in Iowa, is applying for homeowners insurance with a coverage amount of $190,000. She has no prior claims and her house is paid off. The bureau record shows excellent credit and a low-risk occupation class, with no flood zone designation.",
+    "red_flags": [],
+    "missing_fields": [],
+    "risk_notes": "No significant risk factors identified. The applicant has a clean claims history and is in a low-risk occupation class. The house is paid off, which reduces potential risk."
+  },
+  "risk": {
+    "score": 20,
+    "band": "low",
+    "factors": [
+      "No prior claims",
+      "Paid-off house",
+      "Excellent credit",
+      "Low-risk occupation class",
+      "No flood zone designation"
+    ],
+    "llm_score": 15,
+    "llm_band": "low",
+    "deterministic_score": 20,
+    "deterministic_band": "low",
+    "agreed": true
+  },
+  "recommendation": {
+    "decision": "approve",
+    "rationale": "Ruth Nguyen has a clean claims history, a paid-off house, excellent credit, and is in a low-risk occupation class. She is not in a flood zone, and no significant risk factors were identified. The risk score and band are both low, indicating a low-risk application.",
+    "source": "model",
+    "model_decision": "approve",
+    "final_decision": "approve",
+    "guard_reason": null
+  },
+  "spans": [
+    {
+      "agent": "intake",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:11:41.450345+00:00",
+      "ended_at": "2026-10-09T15:11:46.536690+00:00",
+      "duration_ms": 5086,
+      "input": {
+        "raw_application": {
+          "submission": "Ruth Nguyen, 63, retired schoolteacher in Iowa. Wants $190,000 homeowners on a paid-off house. No claims. Lives with spouse. SSN 900-01-0007.",
+          "ssn": "900-01-0007"
+        }
+      },
+      "output": {
+        "ssn": "900-01-0007",
+        "full_name": "Ruth Nguyen",
+        "age": 63,
+        "occupation": "retired schoolteacher",
+        "coverage_type": "homeowners",
+        "coverage_amount": 190000,
+        "state": "Iowa",
+        "household": "spouse",
+        "notes": "Paid-off house. No claims."
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 203,
+        "completion_tokens": 100
+      }
+    },
+    {
+      "agent": "enrichment",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:11:46.536708+00:00",
+      "ended_at": "2026-10-09T15:11:52.812648+00:00",
+      "duration_ms": 6276,
+      "input": {
+        "intake": {
+          "ssn": "900-01-0007",
+          "full_name": "Ruth Nguyen",
+          "age": 63,
+          "occupation": "retired schoolteacher",
+          "coverage_type": "homeowners",
+          "coverage_amount": 190000,
+          "state": "Iowa",
+          "household": "spouse",
+          "notes": "Paid-off house. No claims."
+        }
+      },
+      "output": {
+        "ssn": "900-01-0007",
+        "bureau": {
+          "found": true,
+          "prior_claims": 0,
+          "credit_band": "excellent",
+          "occupation_class": "low",
+          "flood_zone": false
+        },
+        "summary": "Ruth Nguyen, a 63-year-old retired schoolteacher in Iowa, is applying for homeowners insurance with a coverage amount of $190,000. She has no prior claims and her house is paid off. The bureau record shows excellent credit and a low-risk occupation class, with no flood zone designation.",
+        "red_flags": [],
+        "missing_fields": [],
+        "risk_notes": "No significant risk factors identified. The applicant has a clean claims history and is in a low-risk occupation class. The house is paid off, which reduces potential risk."
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 243,
+        "completion_tokens": 125
+      }
+    },
+    {
+      "agent": "risk_scoring",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:11:52.812665+00:00",
+      "ended_at": "2026-10-09T15:11:56.379485+00:00",
+      "duration_ms": 3567,
+      "input": {
+        "intake": {
+          "ssn": "900-01-0007",
+          "full_name": "Ruth Nguyen",
+          "age": 63,
+          "occupation": "retired schoolteacher",
+          "coverage_type": "homeowners",
+          "coverage_amount": 190000,
+          "state": "Iowa",
+          "household": "spouse",
+          "notes": "Paid-off house. No claims."
+        },
+        "enrichment": {
+          "ssn": "900-01-0007",
+          "bureau": {
+            "found": true,
+            "prior_claims": 0,
+            "credit_band": "excellent",
+            "occupation_class": "low",
+            "flood_zone": false
+          },
+          "summary": "Ruth Nguyen, a 63-year-old retired schoolteacher in Iowa, is applying for homeowners insurance with a coverage amount of $190,000. She has no prior claims and her house is paid off. The bureau record shows excellent credit and a low-risk occupation class, with no flood zone designation.",
+          "red_flags": [],
+          "missing_fields": [],
+          "risk_notes": "No significant risk factors identified. The applicant has a clean claims history and is in a low-risk occupation class. The house is paid off, which reduces potential risk."
+        }
+      },
+      "output": {
+        "score": 20,
+        "band": "low",
+        "factors": [
+          "No prior claims",
+          "Paid-off house",
+          "Excellent credit",
+          "Low-risk occupation class",
+          "No flood zone designation"
+        ],
+        "llm_score": 15,
+        "llm_band": "low",
+        "deterministic_score": 20,
+        "deterministic_band": "low",
+        "agreed": true
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 371,
+        "completion_tokens": 57
+      }
+    },
+    {
+      "agent": "recommendation",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:11:56.379511+00:00",
+      "ended_at": "2026-10-09T15:12:00.775550+00:00",
+      "duration_ms": 4396,
+      "input": {
+        "intake": {
+          "ssn": "900-01-0007",
+          "full_name": "Ruth Nguyen",
+          "age": 63,
+          "occupation": "retired schoolteacher",
+          "coverage_type": "homeowners",
+          "coverage_amount": 190000,
+          "state": "Iowa",
+          "household": "spouse",
+          "notes": "Paid-off house. No claims."
+        },
+        "enrichment": {
+          "ssn": "900-01-0007",
+          "bureau": {
+            "found": true,
+            "prior_claims": 0,
+            "credit_band": "excellent",
+            "occupation_class": "low",
+            "flood_zone": false
+          },
+          "summary": "Ruth Nguyen, a 63-year-old retired schoolteacher in Iowa, is applying for homeowners insurance with a coverage amount of $190,000. She has no prior claims and her house is paid off. The bureau record shows excellent credit and a low-risk occupation class, with no flood zone designation.",
+          "red_flags": [],
+          "missing_fields": [],
+          "risk_notes": "No significant risk factors identified. The applicant has a clean claims history and is in a low-risk occupation class. The house is paid off, which reduces potential risk."
+        },
+        "risk": {
+          "score": 20,
+          "band": "low",
+          "factors": [
+            "No prior claims",
+            "Paid-off house",
+            "Excellent credit",
+            "Low-risk occupation class",
+            "No flood zone designation"
+          ],
+          "llm_score": 15,
+          "llm_band": "low",
+          "deterministic_score": 20,
+          "deterministic_band": "low",
+          "agreed": true
+        }
+      },
+      "output": {
+        "decision": "approve",
+        "rationale": "Ruth Nguyen has a clean claims history, a paid-off house, excellent credit, and is in a low-risk occupation class. She is not in a flood zone, and no significant risk factors were identified. The risk score and band are both low, indicating a low-risk application.",
+        "source": "model",
+        "model_decision": "approve",
+        "final_decision": "approve",
+        "guard_reason": null
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 458,
+        "completion_tokens": 73
+      },
+      "model_decision": "approve",
+      "final_decision": "approve",
+      "guard_reason": null
+    }
+  ]
+}

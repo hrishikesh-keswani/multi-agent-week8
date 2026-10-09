@@ -1,12 +1,12 @@
 {
-  "case_id": "APP-TIMEOUT",
+  "case_id": "900-10-0099",
   "status": "escalated",
   "raw_application": {
-    "applicant_id": "APP-TIMEOUT",
-    "submission": "Alex Rivera, 41, accountant in Illinois, requesting $250,000 renters coverage. No claims mentioned."
+    "submission": "Alex Rivera, 41, accountant in Illinois, requesting $250,000 renters coverage. No claims mentioned. SSN 900-10-0099.",
+    "ssn": "900-10-0099"
   },
   "intake": {
-    "applicant_id": "APP-TIMEOUT",
+    "ssn": "900-10-0099",
     "full_name": "Alex Rivera",
     "age": 41,
     "occupation": "accountant",
@@ -17,7 +17,7 @@
     "notes": "No claims mentioned."
   },
   "enrichment": {
-    "applicant_id": "APP-TIMEOUT",
+    "ssn": "900-10-0099",
     "bureau": {
       "found": true,
       "prior_claims": 0,
@@ -45,17 +45,17 @@
     {
       "agent": "intake",
       "attempt": 1,
-      "started_at": "2026-10-06T19:03:48.725096+00:00",
-      "ended_at": "2026-10-06T19:03:52.505889+00:00",
-      "duration_ms": 3780,
+      "started_at": "2026-10-07T14:14:09.613423+00:00",
+      "ended_at": "2026-10-07T14:14:14.791806+00:00",
+      "duration_ms": 5178,
       "input": {
         "raw_application": {
-          "applicant_id": "APP-TIMEOUT",
-          "submission": "Alex Rivera, 41, accountant in Illinois, requesting $250,000 renters coverage. No claims mentioned."
+          "submission": "Alex Rivera, 41, accountant in Illinois, requesting $250,000 renters coverage. No claims mentioned. SSN 900-10-0099.",
+          "ssn": "900-10-0099"
         }
       },
       "output": {
-        "applicant_id": "APP-TIMEOUT",
+        "ssn": "900-10-0099",
         "full_name": "Alex Rivera",
         "age": 41,
         "occupation": "accountant",
@@ -68,19 +68,19 @@
       "status": "ok",
       "error": null,
       "token_usage": {
-        "prompt_tokens": 167,
-        "completion_tokens": 85
+        "prompt_tokens": 193,
+        "completion_tokens": 92
       }
     },
     {
       "agent": "enrichment",
       "attempt": 1,
-      "started_at": "2026-10-06T19:03:52.505904+00:00",
-      "ended_at": "2026-10-06T19:03:58.002527+00:00",
-      "duration_ms": 5497,
+      "started_at": "2026-10-07T14:14:14.791820+00:00",
+      "ended_at": "2026-10-07T14:14:20.290076+00:00",
+      "duration_ms": 5498,
       "input": {
         "intake": {
-          "applicant_id": "APP-TIMEOUT",
+          "ssn": "900-10-0099",
           "full_name": "Alex Rivera",
           "age": 41,
           "occupation": "accountant",
@@ -92,7 +92,7 @@
         }
       },
       "output": {
-        "applicant_id": "APP-TIMEOUT",
+        "ssn": "900-10-0099",
         "bureau": {
           "found": true,
           "prior_claims": 0,
@@ -110,19 +110,19 @@
       "status": "ok",
       "error": null,
       "token_usage": {
-        "prompt_tokens": 227,
+        "prompt_tokens": 234,
         "completion_tokens": 125
       }
     },
     {
       "agent": "risk_scoring",
       "attempt": 1,
-      "started_at": "2026-10-06T19:03:58.002545+00:00",
-      "ended_at": "2026-10-06T19:03:58.002645+00:00",
+      "started_at": "2026-10-07T14:14:20.290091+00:00",
+      "ended_at": "2026-10-07T14:14:20.290152+00:00",
       "duration_ms": 0,
       "input": {
         "intake": {
-          "applicant_id": "APP-TIMEOUT",
+          "ssn": "900-10-0099",
           "full_name": "Alex Rivera",
           "age": 41,
           "occupation": "accountant",
@@ -133,7 +133,7 @@
           "notes": "No claims mentioned."
         },
         "enrichment": {
-          "applicant_id": "APP-TIMEOUT",
+          "ssn": "900-10-0099",
           "bureau": {
             "found": true,
             "prior_claims": 0,
@@ -160,12 +160,12 @@
     {
       "agent": "risk_scoring",
       "attempt": 2,
-      "started_at": "2026-10-06T19:03:58.056758+00:00",
-      "ended_at": "2026-10-06T19:03:58.056897+00:00",
+      "started_at": "2026-10-07T14:14:20.344970+00:00",
+      "ended_at": "2026-10-07T14:14:20.345041+00:00",
       "duration_ms": 0,
       "input": {
         "intake": {
-          "applicant_id": "APP-TIMEOUT",
+          "ssn": "900-10-0099",
           "full_name": "Alex Rivera",
           "age": 41,
           "occupation": "accountant",
@@ -176,7 +176,7 @@
           "notes": "No claims mentioned."
         },
         "enrichment": {
-          "applicant_id": "APP-TIMEOUT",
+          "ssn": "900-10-0099",
           "bureau": {
             "found": true,
             "prior_claims": 0,
@@ -203,12 +203,12 @@
     {
       "agent": "risk_scoring",
       "attempt": 3,
-      "started_at": "2026-10-06T19:03:58.160476+00:00",
-      "ended_at": "2026-10-06T19:03:58.160570+00:00",
+      "started_at": "2026-10-07T14:14:20.448849+00:00",
+      "ended_at": "2026-10-07T14:14:20.449022+00:00",
       "duration_ms": 0,
       "input": {
         "intake": {
-          "applicant_id": "APP-TIMEOUT",
+          "ssn": "900-10-0099",
           "full_name": "Alex Rivera",
           "age": 41,
           "occupation": "accountant",
@@ -219,7 +219,7 @@
           "notes": "No claims mentioned."
         },
         "enrichment": {
-          "applicant_id": "APP-TIMEOUT",
+          "ssn": "900-10-0099",
           "bureau": {
             "found": true,
             "prior_claims": 0,

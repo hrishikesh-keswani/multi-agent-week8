@@ -1,0 +1,265 @@
+{
+  "case_id": "900-01-0010",
+  "status": "completed",
+  "raw_application": {
+    "submission": "Sandra Cho, 49, charter boat operator in Louisiana. Requesting $950,000 homeowners on a coastal property with one flood claim last year. Flood zone. SSN 900-01-0010.",
+    "ssn": "900-01-0010"
+  },
+  "intake": {
+    "ssn": "900-01-0010",
+    "full_name": "Sandra Cho",
+    "age": 49,
+    "occupation": "charter boat operator",
+    "coverage_type": "homeowners",
+    "coverage_amount": 950000,
+    "state": "Louisiana",
+    "household": "coastal property",
+    "notes": "one flood claim last year. Flood zone."
+  },
+  "enrichment": {
+    "ssn": "900-01-0010",
+    "bureau": {
+      "found": true,
+      "prior_claims": 1,
+      "credit_band": "fair",
+      "occupation_class": "high",
+      "flood_zone": true
+    },
+    "summary": "Sandra Cho, a 49-year-old charter boat operator in Louisiana, is applying for homeowners coverage of $950,000 for a coastal property. She has a history of one flood claim from last year and resides in a flood zone.",
+    "red_flags": [
+      "flood zone",
+      "prior claims",
+      "high-risk occupation"
+    ],
+    "missing_fields": [],
+    "risk_notes": "The applicant resides in a flood zone and has a prior flood claim, which increases the risk of future claims. Her occupation as a charter boat operator is considered high-risk, further elevating the risk profile."
+  },
+  "risk": {
+    "score": 100,
+    "band": "high",
+    "factors": [
+      "flood zone",
+      "prior claims",
+      "high-risk occupation",
+      "coastal property"
+    ],
+    "llm_score": 82,
+    "llm_band": "high",
+    "deterministic_score": 100,
+    "deterministic_band": "high",
+    "agreed": true
+  },
+  "recommendation": {
+    "decision": "deny",
+    "rationale": "Sandra Cho resides in a flood zone and has a prior flood claim, which significantly increases the risk of future claims. Her occupation as a charter boat operator is considered high-risk, further elevating the risk profile. The combination of these factors, along with the high-risk score and deterministic band, warrants denial of the homeowners coverage request.",
+    "source": "model",
+    "model_decision": "deny",
+    "final_decision": "deny",
+    "guard_reason": null
+  },
+  "spans": [
+    {
+      "agent": "intake",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:12:33.338082+00:00",
+      "ended_at": "2026-10-09T15:12:38.554427+00:00",
+      "duration_ms": 5216,
+      "input": {
+        "raw_application": {
+          "submission": "Sandra Cho, 49, charter boat operator in Louisiana. Requesting $950,000 homeowners on a coastal property with one flood claim last year. Flood zone. SSN 900-01-0010.",
+          "ssn": "900-01-0010"
+        }
+      },
+      "output": {
+        "ssn": "900-01-0010",
+        "full_name": "Sandra Cho",
+        "age": 49,
+        "occupation": "charter boat operator",
+        "coverage_type": "homeowners",
+        "coverage_amount": 950000,
+        "state": "Louisiana",
+        "household": "coastal property",
+        "notes": "one flood claim last year. Flood zone."
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 205,
+        "completion_tokens": 105
+      }
+    },
+    {
+      "agent": "enrichment",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:12:38.554444+00:00",
+      "ended_at": "2026-10-09T15:12:45.325375+00:00",
+      "duration_ms": 6771,
+      "input": {
+        "intake": {
+          "ssn": "900-01-0010",
+          "full_name": "Sandra Cho",
+          "age": 49,
+          "occupation": "charter boat operator",
+          "coverage_type": "homeowners",
+          "coverage_amount": 950000,
+          "state": "Louisiana",
+          "household": "coastal property",
+          "notes": "one flood claim last year. Flood zone."
+        }
+      },
+      "output": {
+        "ssn": "900-01-0010",
+        "bureau": {
+          "found": true,
+          "prior_claims": 1,
+          "credit_band": "fair",
+          "occupation_class": "high",
+          "flood_zone": true
+        },
+        "summary": "Sandra Cho, a 49-year-old charter boat operator in Louisiana, is applying for homeowners coverage of $950,000 for a coastal property. She has a history of one flood claim from last year and resides in a flood zone.",
+        "red_flags": [
+          "flood zone",
+          "prior claims",
+          "high-risk occupation"
+        ],
+        "missing_fields": [],
+        "risk_notes": "The applicant resides in a flood zone and has a prior flood claim, which increases the risk of future claims. Her occupation as a charter boat operator is considered high-risk, further elevating the risk profile."
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 246,
+        "completion_tokens": 133
+      }
+    },
+    {
+      "agent": "risk_scoring",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:12:45.325411+00:00",
+      "ended_at": "2026-10-09T15:12:48.401465+00:00",
+      "duration_ms": 3076,
+      "input": {
+        "intake": {
+          "ssn": "900-01-0010",
+          "full_name": "Sandra Cho",
+          "age": 49,
+          "occupation": "charter boat operator",
+          "coverage_type": "homeowners",
+          "coverage_amount": 950000,
+          "state": "Louisiana",
+          "household": "coastal property",
+          "notes": "one flood claim last year. Flood zone."
+        },
+        "enrichment": {
+          "ssn": "900-01-0010",
+          "bureau": {
+            "found": true,
+            "prior_claims": 1,
+            "credit_band": "fair",
+            "occupation_class": "high",
+            "flood_zone": true
+          },
+          "summary": "Sandra Cho, a 49-year-old charter boat operator in Louisiana, is applying for homeowners coverage of $950,000 for a coastal property. She has a history of one flood claim from last year and resides in a flood zone.",
+          "red_flags": [
+            "flood zone",
+            "prior claims",
+            "high-risk occupation"
+          ],
+          "missing_fields": [],
+          "risk_notes": "The applicant resides in a flood zone and has a prior flood claim, which increases the risk of future claims. Her occupation as a charter boat operator is considered high-risk, further elevating the risk profile."
+        }
+      },
+      "output": {
+        "score": 100,
+        "band": "high",
+        "factors": [
+          "flood zone",
+          "prior claims",
+          "high-risk occupation",
+          "coastal property"
+        ],
+        "llm_score": 82,
+        "llm_band": "high",
+        "deterministic_score": 100,
+        "deterministic_band": "high",
+        "agreed": true
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 382,
+        "completion_tokens": 50
+      }
+    },
+    {
+      "agent": "recommendation",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:12:48.401474+00:00",
+      "ended_at": "2026-10-09T15:12:53.639804+00:00",
+      "duration_ms": 5238,
+      "input": {
+        "intake": {
+          "ssn": "900-01-0010",
+          "full_name": "Sandra Cho",
+          "age": 49,
+          "occupation": "charter boat operator",
+          "coverage_type": "homeowners",
+          "coverage_amount": 950000,
+          "state": "Louisiana",
+          "household": "coastal property",
+          "notes": "one flood claim last year. Flood zone."
+        },
+        "enrichment": {
+          "ssn": "900-01-0010",
+          "bureau": {
+            "found": true,
+            "prior_claims": 1,
+            "credit_band": "fair",
+            "occupation_class": "high",
+            "flood_zone": true
+          },
+          "summary": "Sandra Cho, a 49-year-old charter boat operator in Louisiana, is applying for homeowners coverage of $950,000 for a coastal property. She has a history of one flood claim from last year and resides in a flood zone.",
+          "red_flags": [
+            "flood zone",
+            "prior claims",
+            "high-risk occupation"
+          ],
+          "missing_fields": [],
+          "risk_notes": "The applicant resides in a flood zone and has a prior flood claim, which increases the risk of future claims. Her occupation as a charter boat operator is considered high-risk, further elevating the risk profile."
+        },
+        "risk": {
+          "score": 100,
+          "band": "high",
+          "factors": [
+            "flood zone",
+            "prior claims",
+            "high-risk occupation",
+            "coastal property"
+          ],
+          "llm_score": 82,
+          "llm_band": "high",
+          "deterministic_score": 100,
+          "deterministic_band": "high",
+          "agreed": true
+        }
+      },
+      "output": {
+        "decision": "deny",
+        "rationale": "Sandra Cho resides in a flood zone and has a prior flood claim, which significantly increases the risk of future claims. Her occupation as a charter boat operator is considered high-risk, further elevating the risk profile. The combination of these factors, along with the high-risk score and deterministic band, warrants denial of the homeowners coverage request.",
+        "source": "model",
+        "model_decision": "deny",
+        "final_decision": "deny",
+        "guard_reason": null
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 465,
+        "completion_tokens": 83
+      },
+      "model_decision": "deny",
+      "final_decision": "deny",
+      "guard_reason": null
+    }
+  ]
+}

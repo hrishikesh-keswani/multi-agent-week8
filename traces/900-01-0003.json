@@ -1,0 +1,249 @@
+{
+  "case_id": "900-01-0003",
+  "status": "completed",
+  "raw_application": {
+    "submission": "Elena Vasquez, 27, registered nurse in Colorado. Asking for $50,000 renters coverage on a leased condo. Clean claims history. Lives alone. SSN 900-01-0003.",
+    "ssn": "900-01-0003"
+  },
+  "intake": {
+    "ssn": "900-01-0003",
+    "full_name": "Elena Vasquez",
+    "age": 27,
+    "occupation": "registered nurse",
+    "coverage_type": "renters",
+    "coverage_amount": 50000,
+    "state": "Colorado",
+    "household": "lives alone",
+    "notes": "Clean claims history. Leased condo."
+  },
+  "enrichment": {
+    "ssn": "900-01-0003",
+    "bureau": {
+      "found": true,
+      "prior_claims": 0,
+      "credit_band": "good",
+      "occupation_class": "low",
+      "flood_zone": false
+    },
+    "summary": "Elena Vasquez, a 27-year-old registered nurse living alone in Colorado, has a good credit band and no prior claims. She is applying for renters insurance with a coverage amount of $50,000.",
+    "red_flags": [],
+    "missing_fields": [],
+    "risk_notes": "No significant risk factors identified. Elena has a clean claims history and is in a low-risk occupation class. She is not in a flood zone."
+  },
+  "risk": {
+    "score": 25,
+    "band": "low",
+    "factors": [
+      "Clean claims history",
+      "Low-risk occupation class",
+      "Not in a flood zone",
+      "Good credit band"
+    ],
+    "llm_score": 22,
+    "llm_band": "low",
+    "deterministic_score": 25,
+    "deterministic_band": "low",
+    "agreed": true
+  },
+  "recommendation": {
+    "decision": "approve",
+    "rationale": "Elena Vasquez has a clean claims history, is in a low-risk occupation class, is not in a flood zone, and has a good credit band. These factors indicate a low-risk profile, making her a suitable candidate for approval.",
+    "source": "model",
+    "model_decision": "approve",
+    "final_decision": "approve",
+    "guard_reason": null
+  },
+  "spans": [
+    {
+      "agent": "intake",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:10:30.871384+00:00",
+      "ended_at": "2026-10-09T15:10:35.925467+00:00",
+      "duration_ms": 5054,
+      "input": {
+        "raw_application": {
+          "submission": "Elena Vasquez, 27, registered nurse in Colorado. Asking for $50,000 renters coverage on a leased condo. Clean claims history. Lives alone. SSN 900-01-0003.",
+          "ssn": "900-01-0003"
+        }
+      },
+      "output": {
+        "ssn": "900-01-0003",
+        "full_name": "Elena Vasquez",
+        "age": 27,
+        "occupation": "registered nurse",
+        "coverage_type": "renters",
+        "coverage_amount": 50000,
+        "state": "Colorado",
+        "household": "lives alone",
+        "notes": "Clean claims history. Leased condo."
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 203,
+        "completion_tokens": 99
+      }
+    },
+    {
+      "agent": "enrichment",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:10:35.925485+00:00",
+      "ended_at": "2026-10-09T15:10:41.137159+00:00",
+      "duration_ms": 5212,
+      "input": {
+        "intake": {
+          "ssn": "900-01-0003",
+          "full_name": "Elena Vasquez",
+          "age": 27,
+          "occupation": "registered nurse",
+          "coverage_type": "renters",
+          "coverage_amount": 50000,
+          "state": "Colorado",
+          "household": "lives alone",
+          "notes": "Clean claims history. Leased condo."
+        }
+      },
+      "output": {
+        "ssn": "900-01-0003",
+        "bureau": {
+          "found": true,
+          "prior_claims": 0,
+          "credit_band": "good",
+          "occupation_class": "low",
+          "flood_zone": false
+        },
+        "summary": "Elena Vasquez, a 27-year-old registered nurse living alone in Colorado, has a good credit band and no prior claims. She is applying for renters insurance with a coverage amount of $50,000.",
+        "red_flags": [],
+        "missing_fields": [],
+        "risk_notes": "No significant risk factors identified. Elena has a clean claims history and is in a low-risk occupation class. She is not in a flood zone."
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 241,
+        "completion_tokens": 102
+      }
+    },
+    {
+      "agent": "risk_scoring",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:10:41.137169+00:00",
+      "ended_at": "2026-10-09T15:10:43.972897+00:00",
+      "duration_ms": 2836,
+      "input": {
+        "intake": {
+          "ssn": "900-01-0003",
+          "full_name": "Elena Vasquez",
+          "age": 27,
+          "occupation": "registered nurse",
+          "coverage_type": "renters",
+          "coverage_amount": 50000,
+          "state": "Colorado",
+          "household": "lives alone",
+          "notes": "Clean claims history. Leased condo."
+        },
+        "enrichment": {
+          "ssn": "900-01-0003",
+          "bureau": {
+            "found": true,
+            "prior_claims": 0,
+            "credit_band": "good",
+            "occupation_class": "low",
+            "flood_zone": false
+          },
+          "summary": "Elena Vasquez, a 27-year-old registered nurse living alone in Colorado, has a good credit band and no prior claims. She is applying for renters insurance with a coverage amount of $50,000.",
+          "red_flags": [],
+          "missing_fields": [],
+          "risk_notes": "No significant risk factors identified. Elena has a clean claims history and is in a low-risk occupation class. She is not in a flood zone."
+        }
+      },
+      "output": {
+        "score": 25,
+        "band": "low",
+        "factors": [
+          "Clean claims history",
+          "Low-risk occupation class",
+          "Not in a flood zone",
+          "Good credit band"
+        ],
+        "llm_score": 22,
+        "llm_band": "low",
+        "deterministic_score": 25,
+        "deterministic_band": "low",
+        "agreed": true
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 346,
+        "completion_tokens": 46
+      }
+    },
+    {
+      "agent": "recommendation",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:10:43.972929+00:00",
+      "ended_at": "2026-10-09T15:10:48.012703+00:00",
+      "duration_ms": 4040,
+      "input": {
+        "intake": {
+          "ssn": "900-01-0003",
+          "full_name": "Elena Vasquez",
+          "age": 27,
+          "occupation": "registered nurse",
+          "coverage_type": "renters",
+          "coverage_amount": 50000,
+          "state": "Colorado",
+          "household": "lives alone",
+          "notes": "Clean claims history. Leased condo."
+        },
+        "enrichment": {
+          "ssn": "900-01-0003",
+          "bureau": {
+            "found": true,
+            "prior_claims": 0,
+            "credit_band": "good",
+            "occupation_class": "low",
+            "flood_zone": false
+          },
+          "summary": "Elena Vasquez, a 27-year-old registered nurse living alone in Colorado, has a good credit band and no prior claims. She is applying for renters insurance with a coverage amount of $50,000.",
+          "red_flags": [],
+          "missing_fields": [],
+          "risk_notes": "No significant risk factors identified. Elena has a clean claims history and is in a low-risk occupation class. She is not in a flood zone."
+        },
+        "risk": {
+          "score": 25,
+          "band": "low",
+          "factors": [
+            "Clean claims history",
+            "Low-risk occupation class",
+            "Not in a flood zone",
+            "Good credit band"
+          ],
+          "llm_score": 22,
+          "llm_band": "low",
+          "deterministic_score": 25,
+          "deterministic_band": "low",
+          "agreed": true
+        }
+      },
+      "output": {
+        "decision": "approve",
+        "rationale": "Elena Vasquez has a clean claims history, is in a low-risk occupation class, is not in a flood zone, and has a good credit band. These factors indicate a low-risk profile, making her a suitable candidate for approval.",
+        "source": "model",
+        "model_decision": "approve",
+        "final_decision": "approve",
+        "guard_reason": null
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 430,
+        "completion_tokens": 64
+      },
+      "model_decision": "approve",
+      "final_decision": "approve",
+      "guard_reason": null
+    }
+  ]
+}

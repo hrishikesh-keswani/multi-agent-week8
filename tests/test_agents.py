@@ -14,12 +14,12 @@ CLEAN_APPLICATION = {
     "submission": (
         "Hi, I'm Maya Chen, 29, software engineer in Ohio. I rent an apartment "
         "and want $100,000 of renters insurance. No prior claims. Single household. "
-        "SSN 900-10-0001."
+        "SSN 900-01-0001."
     ),
 }
 
 KNOWN_INTAKE = {
-    "ssn": "900-10-0001",
+    "ssn": "900-01-0001",
     "full_name": "Maya Chen",
     "age": 29,
     "occupation": "software engineer",
@@ -31,7 +31,7 @@ KNOWN_INTAKE = {
 }
 
 KNOWN_ENRICHMENT = {
-    "ssn": "900-10-0001",
+    "ssn": "900-01-0001",
     "bureau": {
         "found": True,
         "prior_claims": 0,
@@ -55,7 +55,7 @@ KNOWN_RISK = {
 @pytest.mark.live
 def test_intake_agent(live_llm):
     case = intake_agent(CaseRecord.from_application(CLEAN_APPLICATION), live_llm)
-    assert case.intake["ssn"] == "900-10-0001"
+    assert case.intake["ssn"] == "900-01-0001"
     assert isinstance(case.intake["full_name"], str) and case.intake["full_name"]
     assert case.intake["coverage_type"]
     assert case.last_usage["prompt_tokens"] + case.last_usage["completion_tokens"] > 0
@@ -79,11 +79,21 @@ def test_risk_scoring_agent(live_llm):
     case.intake = dict(KNOWN_INTAKE)
     case.enrichment = dict(KNOWN_ENRICHMENT)
     case = risk_scoring_agent(case, live_llm)
-    assert isinstance(case.risk["score"], int)
-    assert 0 <= case.risk["score"] <= 100
-    assert case.risk["band"] in {"low", "medium", "high"}
-    assert isinstance(case.risk["factors"], list)
+    risk = case.risk
+    assert risk["deterministic_score"] == 20
+    assert risk["deterministic_band"] == "low"
+    assert risk["llm_band"] in {"low", "medium", "high"}
+    assert isinstance(risk["factors"], list)
     assert case.last_usage["prompt_tokens"] + case.last_usage["completion_tokens"] > 0
+    if risk["agreed"]:
+        assert risk["band"] == "low"
+        assert isinstance(risk["score"], int)
+        assert 0 <= risk["score"] <= 100
+    else:
+        assert risk["score"] is None
+        assert risk["band"] is None
+        assert case.status == "escalated"
+        assert case.recommendation["source"] == "escalation"
 
 
 @pytest.mark.live

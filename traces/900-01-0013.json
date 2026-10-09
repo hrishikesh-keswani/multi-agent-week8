@@ -1,0 +1,276 @@
+{
+  "case_id": "900-01-0013",
+  "status": "completed",
+  "raw_application": {
+    "submission": "Malik Bryant, 41, commercial diver in Mississippi. Wants $700,000 homeowners. One recent flood claim and a theft claim. High-risk occupation. SSN 900-01-0013.",
+    "ssn": "900-01-0013"
+  },
+  "intake": {
+    "ssn": "900-01-0013",
+    "full_name": "Malik Bryant",
+    "age": 41,
+    "occupation": "commercial diver",
+    "coverage_type": "homeowners",
+    "coverage_amount": 700000,
+    "state": "Mississippi",
+    "household": "one",
+    "notes": "One recent flood claim and a theft claim. High-risk occupation."
+  },
+  "enrichment": {
+    "ssn": "900-01-0013",
+    "bureau": {
+      "found": true,
+      "prior_claims": 2,
+      "credit_band": "fair",
+      "occupation_class": "high",
+      "flood_zone": true
+    },
+    "summary": "Malik Bryant, a 41-year-old commercial diver in Mississippi, is applying for homeowners insurance covering $700,000. He has a history of prior claims, including a recent flood and theft claim, and is in a flood zone. His occupation is classified as high-risk, and his credit band is fair.",
+    "red_flags": [
+      "Recent flood claim",
+      "Theft claim",
+      "High-risk occupation",
+      "Flood zone",
+      "Fair credit band"
+    ],
+    "missing_fields": [],
+    "risk_notes": "The applicant's high-risk occupation, flood zone status, and history of prior claims significantly increase the risk profile. The fair credit band may also impact the applicant's ability to secure favorable insurance terms."
+  },
+  "risk": {
+    "score": 100,
+    "band": "high",
+    "factors": [
+      "Recent flood claim",
+      "Theft claim",
+      "High-risk occupation",
+      "Flood zone",
+      "Fair credit band"
+    ],
+    "llm_score": 82,
+    "llm_band": "high",
+    "deterministic_score": 100,
+    "deterministic_band": "high",
+    "agreed": true
+  },
+  "recommendation": {
+    "decision": "deny",
+    "rationale": "Malik Bryant's application presents a high-risk profile due to his high-risk occupation as a commercial diver, residence in a flood zone, recent flood and theft claims, and a fair credit band. These factors significantly increase the likelihood of future claims and financial exposure, making the application unsuitable for approval.",
+    "source": "model",
+    "model_decision": "deny",
+    "final_decision": "deny",
+    "guard_reason": null
+  },
+  "spans": [
+    {
+      "agent": "intake",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:13:35.320373+00:00",
+      "ended_at": "2026-10-09T15:13:40.656740+00:00",
+      "duration_ms": 5336,
+      "input": {
+        "raw_application": {
+          "submission": "Malik Bryant, 41, commercial diver in Mississippi. Wants $700,000 homeowners. One recent flood claim and a theft claim. High-risk occupation. SSN 900-01-0013.",
+          "ssn": "900-01-0013"
+        }
+      },
+      "output": {
+        "ssn": "900-01-0013",
+        "full_name": "Malik Bryant",
+        "age": 41,
+        "occupation": "commercial diver",
+        "coverage_type": "homeowners",
+        "coverage_amount": 700000,
+        "state": "Mississippi",
+        "household": "one",
+        "notes": "One recent flood claim and a theft claim. High-risk occupation."
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 203,
+        "completion_tokens": 103
+      }
+    },
+    {
+      "agent": "enrichment",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:13:40.656764+00:00",
+      "ended_at": "2026-10-09T15:13:48.949281+00:00",
+      "duration_ms": 8293,
+      "input": {
+        "intake": {
+          "ssn": "900-01-0013",
+          "full_name": "Malik Bryant",
+          "age": 41,
+          "occupation": "commercial diver",
+          "coverage_type": "homeowners",
+          "coverage_amount": 700000,
+          "state": "Mississippi",
+          "household": "one",
+          "notes": "One recent flood claim and a theft claim. High-risk occupation."
+        }
+      },
+      "output": {
+        "ssn": "900-01-0013",
+        "bureau": {
+          "found": true,
+          "prior_claims": 2,
+          "credit_band": "fair",
+          "occupation_class": "high",
+          "flood_zone": true
+        },
+        "summary": "Malik Bryant, a 41-year-old commercial diver in Mississippi, is applying for homeowners insurance covering $700,000. He has a history of prior claims, including a recent flood and theft claim, and is in a flood zone. His occupation is classified as high-risk, and his credit band is fair.",
+        "red_flags": [
+          "Recent flood claim",
+          "Theft claim",
+          "High-risk occupation",
+          "Flood zone",
+          "Fair credit band"
+        ],
+        "missing_fields": [],
+        "risk_notes": "The applicant's high-risk occupation, flood zone status, and history of prior claims significantly increase the risk profile. The fair credit band may also impact the applicant's ability to secure favorable insurance terms."
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 245,
+        "completion_tokens": 165
+      }
+    },
+    {
+      "agent": "risk_scoring",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:13:48.949300+00:00",
+      "ended_at": "2026-10-09T15:13:52.510341+00:00",
+      "duration_ms": 3561,
+      "input": {
+        "intake": {
+          "ssn": "900-01-0013",
+          "full_name": "Malik Bryant",
+          "age": 41,
+          "occupation": "commercial diver",
+          "coverage_type": "homeowners",
+          "coverage_amount": 700000,
+          "state": "Mississippi",
+          "household": "one",
+          "notes": "One recent flood claim and a theft claim. High-risk occupation."
+        },
+        "enrichment": {
+          "ssn": "900-01-0013",
+          "bureau": {
+            "found": true,
+            "prior_claims": 2,
+            "credit_band": "fair",
+            "occupation_class": "high",
+            "flood_zone": true
+          },
+          "summary": "Malik Bryant, a 41-year-old commercial diver in Mississippi, is applying for homeowners insurance covering $700,000. He has a history of prior claims, including a recent flood and theft claim, and is in a flood zone. His occupation is classified as high-risk, and his credit band is fair.",
+          "red_flags": [
+            "Recent flood claim",
+            "Theft claim",
+            "High-risk occupation",
+            "Flood zone",
+            "Fair credit band"
+          ],
+          "missing_fields": [],
+          "risk_notes": "The applicant's high-risk occupation, flood zone status, and history of prior claims significantly increase the risk profile. The fair credit band may also impact the applicant's ability to secure favorable insurance terms."
+        }
+      },
+      "output": {
+        "score": 100,
+        "band": "high",
+        "factors": [
+          "Recent flood claim",
+          "Theft claim",
+          "High-risk occupation",
+          "Flood zone",
+          "Fair credit band"
+        ],
+        "llm_score": 82,
+        "llm_band": "high",
+        "deterministic_score": 100,
+        "deterministic_band": "high",
+        "agreed": true
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 405,
+        "completion_tokens": 56
+      }
+    },
+    {
+      "agent": "recommendation",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:13:52.510358+00:00",
+      "ended_at": "2026-10-09T15:13:57.096490+00:00",
+      "duration_ms": 4586,
+      "input": {
+        "intake": {
+          "ssn": "900-01-0013",
+          "full_name": "Malik Bryant",
+          "age": 41,
+          "occupation": "commercial diver",
+          "coverage_type": "homeowners",
+          "coverage_amount": 700000,
+          "state": "Mississippi",
+          "household": "one",
+          "notes": "One recent flood claim and a theft claim. High-risk occupation."
+        },
+        "enrichment": {
+          "ssn": "900-01-0013",
+          "bureau": {
+            "found": true,
+            "prior_claims": 2,
+            "credit_band": "fair",
+            "occupation_class": "high",
+            "flood_zone": true
+          },
+          "summary": "Malik Bryant, a 41-year-old commercial diver in Mississippi, is applying for homeowners insurance covering $700,000. He has a history of prior claims, including a recent flood and theft claim, and is in a flood zone. His occupation is classified as high-risk, and his credit band is fair.",
+          "red_flags": [
+            "Recent flood claim",
+            "Theft claim",
+            "High-risk occupation",
+            "Flood zone",
+            "Fair credit band"
+          ],
+          "missing_fields": [],
+          "risk_notes": "The applicant's high-risk occupation, flood zone status, and history of prior claims significantly increase the risk profile. The fair credit band may also impact the applicant's ability to secure favorable insurance terms."
+        },
+        "risk": {
+          "score": 100,
+          "band": "high",
+          "factors": [
+            "Recent flood claim",
+            "Theft claim",
+            "High-risk occupation",
+            "Flood zone",
+            "Fair credit band"
+          ],
+          "llm_score": 82,
+          "llm_band": "high",
+          "deterministic_score": 100,
+          "deterministic_band": "high",
+          "agreed": true
+        }
+      },
+      "output": {
+        "decision": "deny",
+        "rationale": "Malik Bryant's application presents a high-risk profile due to his high-risk occupation as a commercial diver, residence in a flood zone, recent flood and theft claims, and a fair credit band. These factors significantly increase the likelihood of future claims and financial exposure, making the application unsuitable for approval.",
+        "source": "model",
+        "model_decision": "deny",
+        "final_decision": "deny",
+        "guard_reason": null
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 493,
+        "completion_tokens": 76
+      },
+      "model_decision": "deny",
+      "final_decision": "deny",
+      "guard_reason": null
+    }
+  ]
+}

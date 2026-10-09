@@ -1,0 +1,262 @@
+{
+  "case_id": "900-01-0011",
+  "status": "completed",
+  "raw_application": {
+    "submission": "Victor Ramos, 46, roofing contractor in Texas. Homeowners for $800,000. Three wind and hail claims in five years. Fair credit mentioned on the form. SSN 900-01-0011.",
+    "ssn": "900-01-0011"
+  },
+  "intake": {
+    "ssn": "900-01-0011",
+    "full_name": "Victor Ramos",
+    "age": 46,
+    "occupation": "roofing contractor",
+    "coverage_type": "homeowners",
+    "coverage_amount": 800000,
+    "state": "Texas",
+    "household": "Three",
+    "notes": "Three wind and hail claims in five years. Fair credit mentioned on the form."
+  },
+  "enrichment": {
+    "ssn": "900-01-0011",
+    "bureau": {
+      "found": true,
+      "prior_claims": 3,
+      "credit_band": "fair",
+      "occupation_class": "high",
+      "flood_zone": false
+    },
+    "summary": "Victor Ramos, a 46-year-old roofing contractor in Texas, is applying for homeowners insurance with a coverage amount of $800,000. He has a history of three wind and hail claims in five years and fair credit. The bureau record confirms fair credit, a high-risk occupation class, and no flood zone designation.",
+    "red_flags": [
+      "Three wind and hail claims in five years",
+      "Fair credit mentioned",
+      "High-risk occupation class"
+    ],
+    "missing_fields": [],
+    "risk_notes": "The applicant has a history of multiple claims and fair credit, which may impact the risk assessment. The high-risk occupation class also increases the potential for higher claims."
+  },
+  "risk": {
+    "score": 100,
+    "band": "high",
+    "factors": [
+      "Three wind and hail claims in five years",
+      "Fair credit mentioned",
+      "High-risk occupation class"
+    ],
+    "llm_score": 82,
+    "llm_band": "high",
+    "deterministic_score": 100,
+    "deterministic_band": "high",
+    "agreed": true
+  },
+  "recommendation": {
+    "decision": "deny",
+    "rationale": "Victor Ramos has a history of three wind and hail claims in five years, fair credit, and a high-risk occupation class, which collectively indicate a high-risk profile. The coverage amount of $800,000 further increases the potential financial exposure. These factors justify denying the application.",
+    "source": "model",
+    "model_decision": "deny",
+    "final_decision": "deny",
+    "guard_reason": null
+  },
+  "spans": [
+    {
+      "agent": "intake",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:12:53.643508+00:00",
+      "ended_at": "2026-10-09T15:12:59.193287+00:00",
+      "duration_ms": 5550,
+      "input": {
+        "raw_application": {
+          "submission": "Victor Ramos, 46, roofing contractor in Texas. Homeowners for $800,000. Three wind and hail claims in five years. Fair credit mentioned on the form. SSN 900-01-0011.",
+          "ssn": "900-01-0011"
+        }
+      },
+      "output": {
+        "ssn": "900-01-0011",
+        "full_name": "Victor Ramos",
+        "age": 46,
+        "occupation": "roofing contractor",
+        "coverage_type": "homeowners",
+        "coverage_amount": 800000,
+        "state": "Texas",
+        "household": "Three",
+        "notes": "Three wind and hail claims in five years. Fair credit mentioned on the form."
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 207,
+        "completion_tokens": 106
+      }
+    },
+    {
+      "agent": "enrichment",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:12:59.193322+00:00",
+      "ended_at": "2026-10-09T15:13:06.675258+00:00",
+      "duration_ms": 7482,
+      "input": {
+        "intake": {
+          "ssn": "900-01-0011",
+          "full_name": "Victor Ramos",
+          "age": 46,
+          "occupation": "roofing contractor",
+          "coverage_type": "homeowners",
+          "coverage_amount": 800000,
+          "state": "Texas",
+          "household": "Three",
+          "notes": "Three wind and hail claims in five years. Fair credit mentioned on the form."
+        }
+      },
+      "output": {
+        "ssn": "900-01-0011",
+        "bureau": {
+          "found": true,
+          "prior_claims": 3,
+          "credit_band": "fair",
+          "occupation_class": "high",
+          "flood_zone": false
+        },
+        "summary": "Victor Ramos, a 46-year-old roofing contractor in Texas, is applying for homeowners insurance with a coverage amount of $800,000. He has a history of three wind and hail claims in five years and fair credit. The bureau record confirms fair credit, a high-risk occupation class, and no flood zone designation.",
+        "red_flags": [
+          "Three wind and hail claims in five years",
+          "Fair credit mentioned",
+          "High-risk occupation class"
+        ],
+        "missing_fields": [],
+        "risk_notes": "The applicant has a history of multiple claims and fair credit, which may impact the risk assessment. The high-risk occupation class also increases the potential for higher claims."
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 248,
+        "completion_tokens": 148
+      }
+    },
+    {
+      "agent": "risk_scoring",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:13:06.675281+00:00",
+      "ended_at": "2026-10-09T15:13:09.954388+00:00",
+      "duration_ms": 3279,
+      "input": {
+        "intake": {
+          "ssn": "900-01-0011",
+          "full_name": "Victor Ramos",
+          "age": 46,
+          "occupation": "roofing contractor",
+          "coverage_type": "homeowners",
+          "coverage_amount": 800000,
+          "state": "Texas",
+          "household": "Three",
+          "notes": "Three wind and hail claims in five years. Fair credit mentioned on the form."
+        },
+        "enrichment": {
+          "ssn": "900-01-0011",
+          "bureau": {
+            "found": true,
+            "prior_claims": 3,
+            "credit_band": "fair",
+            "occupation_class": "high",
+            "flood_zone": false
+          },
+          "summary": "Victor Ramos, a 46-year-old roofing contractor in Texas, is applying for homeowners insurance with a coverage amount of $800,000. He has a history of three wind and hail claims in five years and fair credit. The bureau record confirms fair credit, a high-risk occupation class, and no flood zone designation.",
+          "red_flags": [
+            "Three wind and hail claims in five years",
+            "Fair credit mentioned",
+            "High-risk occupation class"
+          ],
+          "missing_fields": [],
+          "risk_notes": "The applicant has a history of multiple claims and fair credit, which may impact the risk assessment. The high-risk occupation class also increases the potential for higher claims."
+        }
+      },
+      "output": {
+        "score": 100,
+        "band": "high",
+        "factors": [
+          "Three wind and hail claims in five years",
+          "Fair credit mentioned",
+          "High-risk occupation class"
+        ],
+        "llm_score": 82,
+        "llm_band": "high",
+        "deterministic_score": 100,
+        "deterministic_band": "high",
+        "agreed": true
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 399,
+        "completion_tokens": 50
+      }
+    },
+    {
+      "agent": "recommendation",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:13:09.954407+00:00",
+      "ended_at": "2026-10-09T15:13:14.529563+00:00",
+      "duration_ms": 4575,
+      "input": {
+        "intake": {
+          "ssn": "900-01-0011",
+          "full_name": "Victor Ramos",
+          "age": 46,
+          "occupation": "roofing contractor",
+          "coverage_type": "homeowners",
+          "coverage_amount": 800000,
+          "state": "Texas",
+          "household": "Three",
+          "notes": "Three wind and hail claims in five years. Fair credit mentioned on the form."
+        },
+        "enrichment": {
+          "ssn": "900-01-0011",
+          "bureau": {
+            "found": true,
+            "prior_claims": 3,
+            "credit_band": "fair",
+            "occupation_class": "high",
+            "flood_zone": false
+          },
+          "summary": "Victor Ramos, a 46-year-old roofing contractor in Texas, is applying for homeowners insurance with a coverage amount of $800,000. He has a history of three wind and hail claims in five years and fair credit. The bureau record confirms fair credit, a high-risk occupation class, and no flood zone designation.",
+          "red_flags": [
+            "Three wind and hail claims in five years",
+            "Fair credit mentioned",
+            "High-risk occupation class"
+          ],
+          "missing_fields": [],
+          "risk_notes": "The applicant has a history of multiple claims and fair credit, which may impact the risk assessment. The high-risk occupation class also increases the potential for higher claims."
+        },
+        "risk": {
+          "score": 100,
+          "band": "high",
+          "factors": [
+            "Three wind and hail claims in five years",
+            "Fair credit mentioned",
+            "High-risk occupation class"
+          ],
+          "llm_score": 82,
+          "llm_band": "high",
+          "deterministic_score": 100,
+          "deterministic_band": "high",
+          "agreed": true
+        }
+      },
+      "output": {
+        "decision": "deny",
+        "rationale": "Victor Ramos has a history of three wind and hail claims in five years, fair credit, and a high-risk occupation class, which collectively indicate a high-risk profile. The coverage amount of $800,000 further increases the potential financial exposure. These factors justify denying the application.",
+        "source": "model",
+        "model_decision": "deny",
+        "final_decision": "deny",
+        "guard_reason": null
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 483,
+        "completion_tokens": 76
+      },
+      "model_decision": "deny",
+      "final_decision": "deny",
+      "guard_reason": null
+    }
+  ]
+}

@@ -6,3 +6,4 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data"
 TRACE_DIR = ROOT / "traces"
 FAILURE_TRACE_DIR = ROOT / "failure-traces"
+QUOTE_DIR = ROOT / "quotes"

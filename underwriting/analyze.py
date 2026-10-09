@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from underwriting.paths import ROOT, TRACE_DIR
+from underwriting.paths import FAILURE_TRACE_DIR, ROOT, TRACE_DIR
 
 # Illustrative hosted small-model rates. Local Ollama bills nothing.
 INPUT_USD_PER_MILLION = 0.10
@@ -14,18 +14,22 @@ OUTPUT_USD_PER_MILLION = 0.40
 REALTIME_BUDGET_MS = 10_000
 
 
-def load_case_traces(trace_dir: Path) -> List[Dict[str, Any]]:
+def load_case_traces(*trace_dirs: Path) -> List[Dict[str, Any]]:
+    """Every trace in the given folders, completed and escalated, sorted by case id."""
     documents = []
-    for path in sorted(trace_dir.glob("*.json")):
-        with path.open(encoding="utf-8") as handle:
-            document = json.load(handle)
-        if document.get("status") == "escalated":
+    for trace_dir in trace_dirs:
+        if not trace_dir.exists():
             continue
-        documents.append(document)
+        for path in sorted(trace_dir.glob("*.json")):
+            with path.open(encoding="utf-8") as handle:
+                documents.append(json.load(handle))
+    documents.sort(key=lambda document: str(document.get("case_id")))
     return documents
 
 
-def render_analysis(documents: List[Dict[str, Any]]) -> str:
+def render_analysis(all_documents: List[Dict[str, Any]]) -> str:
+    documents = [d for d in all_documents if d.get("status") != "escalated"]
+    escalated = [d for d in all_documents if d.get("status") == "escalated"]
     lines = [
         "# Cost and latency",
         "",
@@ -47,6 +51,8 @@ def render_analysis(documents: List[Dict[str, Any]]) -> str:
     ]
     if not documents:
         lines.append("No completed case traces were found.")
+        lines.append("")
+        lines.extend(_escalated_section(escalated))
         return "\n".join(lines) + "\n"
 
     grand_prompt = 0
@@ -96,7 +102,7 @@ def render_analysis(documents: List[Dict[str, Any]]) -> str:
         lines.append("")
 
     hosted_total = _hosted_usd(grand_prompt, grand_completion)
-    lines.append("## All cases")
+    lines.append("## All completed cases")
     lines.append("")
     lines.append("- Cases: {0}".format(len(documents)))
     lines.append("- Total latency: {0} ms ({1:.1f} s)".format(grand_ms, grand_ms / 1000))
@@ -128,13 +134,78 @@ def render_analysis(documents: List[Dict[str, Any]]) -> str:
             "A person waiting on a quote does not."
         )
     lines.append("")
+    lines.extend(_escalated_section(escalated))
     return "\n".join(lines)
 
 
-def write_analysis(trace_dir: Optional[Path] = None, destination: Optional[Path] = None) -> Path:
+def _escalated_section(escalated: List[Dict[str, Any]]) -> List[str]:
+    lines = ["## Escalated cases", ""]
+    if not escalated:
+        lines.append("No case was escalated to human review.")
+        lines.append("")
+        return lines
+    lines.append(
+        "These cases stopped before a model recommendation and went to human review. "
+        "Their time and tokens are not in the completed-case totals above. "
+        "Time spent on agents that did finish is still real work, so it is listed here."
+    )
+    lines.append("")
+    lines.append("| SSN | Stopped at | Reason | Latency | Prompt tokens | Completion tokens | Hosted equivalent |")
+    lines.append("| --- | --- | --- | --- | --- | --- | --- |")
+    for document in escalated:
+        totals = _totals(document)
+        hosted = _hosted_usd(totals["prompt_tokens"], totals["completion_tokens"])
+        lines.append(
+            "| {0} | {1} | {2} | {3:.1f} s | {4} | {5} | ${6:.6f} |".format(
+                document.get("case_id"),
+                _stopped_at(document),
+                _escalation_reason(document),
+                totals["duration_ms"] / 1000,
+                totals["prompt_tokens"],
+                totals["completion_tokens"],
+                hosted,
+            )
+        )
+    lines.append("")
+    return lines
+
+
+def _stopped_at(document: Dict[str, Any]) -> str:
+    spans = document.get("spans") or []
+    if not spans:
+        return "before any agent"
+    return str(spans[-1].get("agent"))
+
+
+def _escalation_reason(document: Dict[str, Any]) -> str:
+    recommendation = document.get("recommendation") or {}
+    rationale = str(recommendation.get("rationale") or "")
+    risk = document.get("risk") or {}
+    if risk.get("agreed") is False:
+        return "risk bands disagree: llm {0} ({1}) vs deterministic {2} ({3})".format(
+            risk.get("llm_band"),
+            risk.get("llm_score"),
+            risk.get("deterministic_band"),
+            risk.get("deterministic_score"),
+        )
+    spans = document.get("spans") or []
+    errors = [span for span in spans if span.get("status") == "error"]
+    if errors:
+        return "{0} attempt(s) failed: {1}".format(len(errors), errors[-1].get("error"))
+    if rationale:
+        return rationale
+    return "escalated"
+
+
+def write_analysis(
+    trace_dir: Optional[Path] = None,
+    destination: Optional[Path] = None,
+    failure_dir: Optional[Path] = None,
+) -> Path:
     trace_dir = trace_dir or TRACE_DIR
+    failure_dir = FAILURE_TRACE_DIR if failure_dir is None else failure_dir
     destination = destination or (ROOT / "ANALYSIS.md")
-    documents = load_case_traces(trace_dir)
+    documents = load_case_traces(trace_dir, failure_dir)
     destination.write_text(render_analysis(documents), encoding="utf-8")
     return destination
 

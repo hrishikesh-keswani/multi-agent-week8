@@ -1,5 +1,7 @@
 """Shared fixtures."""
 
+import os
+
 import pytest
 
 from underwriting.llm import OllamaClient, ollama_ready
@@ -8,5 +10,8 @@ from underwriting.llm import OllamaClient, ollama_ready
 @pytest.fixture
 def live_llm():
     if not ollama_ready():
-        pytest.skip("local Ollama model qwen3:8b is not available")
+        message = "local Ollama model is not available"
+        if os.environ.get("REQUIRE_OLLAMA") == "1":
+            pytest.fail(message)
+        pytest.skip(message)
     return OllamaClient()

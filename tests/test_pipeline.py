@@ -15,20 +15,20 @@ from tests.fakes import FakeLLM
 
 DEMO_APPLICATIONS = [
     {
-        "submission": "Hi, I'm Maya Chen, 29, software engineer in Ohio. I rent an apartment and want $100,000 of renters insurance. No prior claims. Non-smoker, single household. SSN 900-10-0001.",
+        "submission": "Hi, I'm Maya Chen, 29, software engineer in Ohio. I rent an apartment and want $100,000 of renters insurance. No prior claims. Non-smoker, single household. SSN 900-01-0001.",
     },
     {
-        "submission": "Robert Hale, age 58, commercial fisherman, wants $1,200,000 homeowners on a beach house in Florida. Two water claims in the last three years. Property is in a flood zone. SSN 900-10-0002.",
+        "submission": "Robert Hale, age 58, commercial fisherman, wants $1,200,000 homeowners on a beach house in Florida. Two water claims in the last three years. Property is in a flood zone. SSN 900-01-0009.",
     },
     {
-        "submission": "Applicant Jordan Lee is asking for coverage. Occupation might be roofing. State not provided. Coverage amount left blank. Age unknown. SSN 900-10-0003.",
+        "submission": "Applicant Jordan Lee is asking for coverage. Occupation might be roofing. State not provided. Coverage amount left blank. Age unknown. SSN 900-01-0015.",
     },
 ]
 
 
 def _complete_intake():
     return {
-        "ssn": "900-10-0001",
+        "ssn": "900-01-0001",
         "full_name": "Maya Chen",
         "age": 29,
         "occupation": "software engineer",
@@ -75,22 +75,29 @@ def test_batch_file_has_twenty_applications_with_bureau_rows():
 def test_three_applications_complete_with_traces():
     cases = [run_pipeline(raw, FakeLLM(), backoff_s=(0, 0)) for raw in DEMO_APPLICATIONS]
     by_id = {case.case_id: case for case in cases}
-    assert set(by_id) == {"900-10-0001", "900-10-0002", "900-10-0003"}
+    assert set(by_id) == {"900-01-0001", "900-01-0009", "900-01-0015"}
 
-    clean = by_id["900-10-0001"].recommendation
+    clean_risk = by_id["900-01-0001"].risk
+    assert clean_risk["agreed"] is True
+    assert clean_risk["llm_score"] == 18
+    assert clean_risk["deterministic_score"] == 20
+    assert clean_risk["band"] == "low"
+    assert clean_risk["score"] == 20
+
+    clean = by_id["900-01-0001"].recommendation
     assert clean["model_decision"] == "approve"
     assert clean["final_decision"] == "approve"
     assert clean["guard_reason"] is None
     assert clean["source"] == "model"
 
-    coast = by_id["900-10-0002"].recommendation
+    coast = by_id["900-01-0009"].recommendation
     assert coast["model_decision"] == "approve"
     assert coast["final_decision"] == "refer"
     assert coast["decision"] == "refer"
     assert coast["guard_reason"] == "high score"
     assert coast["source"] == "model"
 
-    thin = by_id["900-10-0003"].recommendation
+    thin = by_id["900-01-0015"].recommendation
     assert thin["decision"] == "refer"
     assert thin["guard_reason"] is None
     assert thin["source"] == "model"
@@ -118,8 +125,33 @@ def test_three_applications_complete_with_traces():
         assert "900-10-0099" not in json.dumps(case.to_document())
 
 
+def test_band_disagreement_refers_without_another_try():
+    class HighScoreOnClean(FakeLLM):
+        def complete(self, *, agent, system, user):
+            response = super(HighScoreOnClean, self).complete(agent=agent, system=system, user=user)
+            if agent == "risk_scoring":
+                response.content["score"] = 90
+            return response
+
+    fake = HighScoreOnClean()
+    case = run_pipeline(DEMO_APPLICATIONS[0], fake, backoff_s=(0, 0))
+    assert case.status == "escalated"
+    assert case.risk["agreed"] is False
+    assert case.risk["llm_band"] == "high"
+    assert case.risk["deterministic_band"] == "low"
+    assert case.risk["score"] is None
+    assert case.risk["band"] is None
+    assert case.recommendation["decision"] == "refer"
+    assert case.recommendation["source"] == "escalation"
+    assert case.recommendation["rationale"] == "risk bands disagree: llm=high deterministic=low"
+    assert fake.calls == ["intake", "enrichment", "risk_scoring"]
+    risk_spans = [span for span in case.trace if span["agent"] == "risk_scoring"]
+    assert len(risk_spans) == 1
+    assert risk_spans[0]["status"] == "ok"
+
+
 def test_guard_blocks_high_score_and_missing_sections():
-    case = CaseRecord.from_application({"submission": "Maya Chen. SSN 900-10-0001."})
+    case = CaseRecord.from_application({"submission": "Maya Chen. SSN 900-01-0001."})
     case.intake = _complete_intake()
     case.risk = {"score": 80, "band": "high", "factors": []}
     decision, reason = apply_guard("approve", case)
@@ -148,7 +180,7 @@ def test_failed_repair_tokens_stay_on_the_error_span():
             )
 
     case = run_pipeline(
-        {"submission": "Maya Chen. SSN 900-10-0001."},
+        {"submission": "Maya Chen. SSN 900-01-0001."},
         BrokenJSON(),
         max_attempts=1,
         backoff_s=(0,),
@@ -159,7 +191,7 @@ def test_failed_repair_tokens_stay_on_the_error_span():
 
 
 def test_guard_leaves_a_clean_approval_unchanged():
-    case = CaseRecord.from_application({"submission": "Maya Chen. SSN 900-10-0001."})
+    case = CaseRecord.from_application({"submission": "Maya Chen. SSN 900-01-0001."})
     case.intake = _complete_intake()
     case.risk = {"score": 18, "band": "low", "factors": []}
     decision, reason = apply_guard("approve", case)

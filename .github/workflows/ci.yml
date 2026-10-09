@@ -3,6 +3,7 @@ name: ci
 on:
   push:
   pull_request:
+  workflow_dispatch:
 
 jobs:
   test:
@@ -16,3 +17,39 @@ jobs:
         run: pip install -r requirements.txt
       - name: Run tests that do not need Ollama
         run: pytest -m "not live"
+
+  live:
+    if: github.event_name == 'workflow_dispatch'
+    needs: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      OLLAMA_MODEL: qwen3:8b
+      REQUIRE_OLLAMA: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+      - name: Install test dependencies
+        run: pip install -r requirements.txt
+      - name: Install Ollama
+        run: curl -fsSL https://ollama.com/install.sh | sh
+      - name: Start Ollama if the installer did not
+        run: |
+          if ! curl -sf http://127.0.0.1:11434/api/tags > /dev/null; then
+            nohup ollama serve > ollama.log 2>&1 &
+          fi
+          for i in $(seq 1 30); do
+            curl -sf http://127.0.0.1:11434/api/tags > /dev/null && exit 0
+            sleep 2
+          done
+          echo "Ollama did not start"
+          cat ollama.log 2>/dev/null
+          exit 1
+      - name: Pull model
+        run: ollama pull "$OLLAMA_MODEL"
+      - name: Confirm the model is ready
+        run: python -c "from underwriting.llm import ollama_ready; assert ollama_ready(), 'model not ready'"
+      - name: Run live agent tests
+        run: pytest -m live -v -rs

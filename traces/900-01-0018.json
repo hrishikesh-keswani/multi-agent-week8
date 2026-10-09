@@ -1,0 +1,203 @@
+{
+  "case_id": "900-01-0018",
+  "status": "escalated",
+  "raw_application": {
+    "submission": "Application for Casey Nguyen. State missing. Coverage amount blank. Age not given. Mentions an apartment but not the coverage type. SSN 900-01-0018.",
+    "ssn": "900-01-0018"
+  },
+  "intake": {
+    "ssn": "900-01-0018",
+    "full_name": "Casey Nguyen",
+    "age": null,
+    "occupation": null,
+    "coverage_type": null,
+    "coverage_amount": null,
+    "state": null,
+    "household": "apartment",
+    "notes": "State missing. Coverage amount blank. Age not given. Mentions an apartment but not the coverage type."
+  },
+  "enrichment": {
+    "ssn": "900-01-0018",
+    "bureau": {
+      "found": true,
+      "prior_claims": 0,
+      "credit_band": "unknown",
+      "occupation_class": "low",
+      "flood_zone": false
+    },
+    "summary": "The applicant's age, occupation, coverage type, coverage amount, and state are missing. The bureau record indicates no prior claims, a low occupation class, and no flood zone status.",
+    "red_flags": [],
+    "missing_fields": [
+      "Age not given",
+      "Occupation not provided",
+      "Coverage type blank",
+      "Coverage amount blank",
+      "State missing"
+    ],
+    "risk_notes": "The applicant's age and occupation are missing, which are critical factors in determining risk and premium. The absence of coverage type and amount makes it difficult to assess the policy details."
+  },
+  "risk": {
+    "score": null,
+    "band": null,
+    "factors": [
+      "Missing age",
+      "Missing occupation",
+      "Missing coverage type",
+      "Missing coverage amount",
+      "Missing state"
+    ],
+    "llm_score": 30,
+    "llm_band": "low",
+    "deterministic_score": 35,
+    "deterministic_band": "medium",
+    "agreed": false
+  },
+  "recommendation": {
+    "decision": "refer",
+    "rationale": "risk bands disagree: llm=low deterministic=medium",
+    "source": "escalation",
+    "model_decision": null,
+    "final_decision": "refer",
+    "guard_reason": null
+  },
+  "spans": [
+    {
+      "agent": "intake",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:14:55.683318+00:00",
+      "ended_at": "2026-10-09T15:15:00.568736+00:00",
+      "duration_ms": 4885,
+      "input": {
+        "raw_application": {
+          "submission": "Application for Casey Nguyen. State missing. Coverage amount blank. Age not given. Mentions an apartment but not the coverage type. SSN 900-01-0018.",
+          "ssn": "900-01-0018"
+        }
+      },
+      "output": {
+        "ssn": "900-01-0018",
+        "full_name": "Casey Nguyen",
+        "age": null,
+        "occupation": null,
+        "coverage_type": null,
+        "coverage_amount": null,
+        "state": null,
+        "household": "apartment",
+        "notes": "State missing. Coverage amount blank. Age not given. Mentions an apartment but not the coverage type."
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 192,
+        "completion_tokens": 98
+      }
+    },
+    {
+      "agent": "enrichment",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:15:00.568753+00:00",
+      "ended_at": "2026-10-09T15:15:06.603406+00:00",
+      "duration_ms": 6035,
+      "input": {
+        "intake": {
+          "ssn": "900-01-0018",
+          "full_name": "Casey Nguyen",
+          "age": null,
+          "occupation": null,
+          "coverage_type": null,
+          "coverage_amount": null,
+          "state": null,
+          "household": "apartment",
+          "notes": "State missing. Coverage amount blank. Age not given. Mentions an apartment but not the coverage type."
+        }
+      },
+      "output": {
+        "ssn": "900-01-0018",
+        "bureau": {
+          "found": true,
+          "prior_claims": 0,
+          "credit_band": "unknown",
+          "occupation_class": "low",
+          "flood_zone": false
+        },
+        "summary": "The applicant's age, occupation, coverage type, coverage amount, and state are missing. The bureau record indicates no prior claims, a low occupation class, and no flood zone status.",
+        "red_flags": [],
+        "missing_fields": [
+          "Age not given",
+          "Occupation not provided",
+          "Coverage type blank",
+          "Coverage amount blank",
+          "State missing"
+        ],
+        "risk_notes": "The applicant's age and occupation are missing, which are critical factors in determining risk and premium. The absence of coverage type and amount makes it difficult to assess the policy details."
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 240,
+        "completion_tokens": 122
+      }
+    },
+    {
+      "agent": "risk_scoring",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:15:06.603427+00:00",
+      "ended_at": "2026-10-09T15:15:09.702996+00:00",
+      "duration_ms": 3100,
+      "input": {
+        "intake": {
+          "ssn": "900-01-0018",
+          "full_name": "Casey Nguyen",
+          "age": null,
+          "occupation": null,
+          "coverage_type": null,
+          "coverage_amount": null,
+          "state": null,
+          "household": "apartment",
+          "notes": "State missing. Coverage amount blank. Age not given. Mentions an apartment but not the coverage type."
+        },
+        "enrichment": {
+          "ssn": "900-01-0018",
+          "bureau": {
+            "found": true,
+            "prior_claims": 0,
+            "credit_band": "unknown",
+            "occupation_class": "low",
+            "flood_zone": false
+          },
+          "summary": "The applicant's age, occupation, coverage type, coverage amount, and state are missing. The bureau record indicates no prior claims, a low occupation class, and no flood zone status.",
+          "red_flags": [],
+          "missing_fields": [
+            "Age not given",
+            "Occupation not provided",
+            "Coverage type blank",
+            "Coverage amount blank",
+            "State missing"
+          ],
+          "risk_notes": "The applicant's age and occupation are missing, which are critical factors in determining risk and premium. The absence of coverage type and amount makes it difficult to assess the policy details."
+        }
+      },
+      "output": {
+        "score": null,
+        "band": null,
+        "factors": [
+          "Missing age",
+          "Missing occupation",
+          "Missing coverage type",
+          "Missing coverage amount",
+          "Missing state"
+        ],
+        "llm_score": 30,
+        "llm_band": "low",
+        "deterministic_score": 35,
+        "deterministic_band": "medium",
+        "agreed": false
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 365,
+        "completion_tokens": 53
+      }
+    }
+  ]
+}

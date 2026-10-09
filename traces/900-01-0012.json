@@ -1,0 +1,262 @@
+{
+  "case_id": "900-01-0012",
+  "status": "completed",
+  "raw_application": {
+    "submission": "Irene Kowalski, 61, owns a waterfront rental in South Carolina. Seeking $1,500,000 coverage. Two prior water claims. The house sits in a flood zone. SSN 900-01-0012.",
+    "ssn": "900-01-0012"
+  },
+  "intake": {
+    "ssn": "900-01-0012",
+    "full_name": "Irene Kowalski",
+    "age": 61,
+    "occupation": "owns a waterfront rental",
+    "coverage_type": "homeowners",
+    "coverage_amount": 1500000,
+    "state": "South Carolina",
+    "household": "waterfront rental",
+    "notes": "Two prior water claims. The house sits in a flood zone."
+  },
+  "enrichment": {
+    "ssn": "900-01-0012",
+    "bureau": {
+      "found": true,
+      "prior_claims": 2,
+      "credit_band": "poor",
+      "occupation_class": "medium",
+      "flood_zone": true
+    },
+    "summary": "Irene Kowalski, a 61-year-old homeowner in South Carolina, owns a waterfront rental property with a coverage amount of $1,500,000. The property is located in a flood zone, and there are two prior water claims. The applicant has a poor credit band.",
+    "red_flags": [
+      "Prior water claims",
+      "Flood zone location",
+      "Poor credit band"
+    ],
+    "missing_fields": [],
+    "risk_notes": "The property is in a flood zone and has a history of water claims, which increases the risk of future claims. The applicant's poor credit band may indicate financial instability, which could affect their ability to manage or recover from losses."
+  },
+  "risk": {
+    "score": 100,
+    "band": "high",
+    "factors": [
+      "Prior water claims",
+      "Flood zone location",
+      "Poor credit band"
+    ],
+    "llm_score": 85,
+    "llm_band": "high",
+    "deterministic_score": 100,
+    "deterministic_band": "high",
+    "agreed": true
+  },
+  "recommendation": {
+    "decision": "deny",
+    "rationale": "The application presents a high-risk profile due to the property's location in a flood zone, a history of two prior water claims, and the applicant's poor credit band. These factors significantly increase the likelihood of future claims and financial instability, making the risk unacceptable for approval.",
+    "source": "model",
+    "model_decision": "deny",
+    "final_decision": "deny",
+    "guard_reason": null
+  },
+  "spans": [
+    {
+      "agent": "intake",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:13:14.530379+00:00",
+      "ended_at": "2026-10-09T15:13:20.060021+00:00",
+      "duration_ms": 5530,
+      "input": {
+        "raw_application": {
+          "submission": "Irene Kowalski, 61, owns a waterfront rental in South Carolina. Seeking $1,500,000 coverage. Two prior water claims. The house sits in a flood zone. SSN 900-01-0012.",
+          "ssn": "900-01-0012"
+        }
+      },
+      "output": {
+        "ssn": "900-01-0012",
+        "full_name": "Irene Kowalski",
+        "age": 61,
+        "occupation": "owns a waterfront rental",
+        "coverage_type": "homeowners",
+        "coverage_amount": 1500000,
+        "state": "South Carolina",
+        "household": "waterfront rental",
+        "notes": "Two prior water claims. The house sits in a flood zone."
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 211,
+        "completion_tokens": 111
+      }
+    },
+    {
+      "agent": "enrichment",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:13:20.060058+00:00",
+      "ended_at": "2026-10-09T15:13:27.656539+00:00",
+      "duration_ms": 7596,
+      "input": {
+        "intake": {
+          "ssn": "900-01-0012",
+          "full_name": "Irene Kowalski",
+          "age": 61,
+          "occupation": "owns a waterfront rental",
+          "coverage_type": "homeowners",
+          "coverage_amount": 1500000,
+          "state": "South Carolina",
+          "household": "waterfront rental",
+          "notes": "Two prior water claims. The house sits in a flood zone."
+        }
+      },
+      "output": {
+        "ssn": "900-01-0012",
+        "bureau": {
+          "found": true,
+          "prior_claims": 2,
+          "credit_band": "poor",
+          "occupation_class": "medium",
+          "flood_zone": true
+        },
+        "summary": "Irene Kowalski, a 61-year-old homeowner in South Carolina, owns a waterfront rental property with a coverage amount of $1,500,000. The property is located in a flood zone, and there are two prior water claims. The applicant has a poor credit band.",
+        "red_flags": [
+          "Prior water claims",
+          "Flood zone location",
+          "Poor credit band"
+        ],
+        "missing_fields": [],
+        "risk_notes": "The property is in a flood zone and has a history of water claims, which increases the risk of future claims. The applicant's poor credit band may indicate financial instability, which could affect their ability to manage or recover from losses."
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 254,
+        "completion_tokens": 151
+      }
+    },
+    {
+      "agent": "risk_scoring",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:13:27.656576+00:00",
+      "ended_at": "2026-10-09T15:13:30.835800+00:00",
+      "duration_ms": 3179,
+      "input": {
+        "intake": {
+          "ssn": "900-01-0012",
+          "full_name": "Irene Kowalski",
+          "age": 61,
+          "occupation": "owns a waterfront rental",
+          "coverage_type": "homeowners",
+          "coverage_amount": 1500000,
+          "state": "South Carolina",
+          "household": "waterfront rental",
+          "notes": "Two prior water claims. The house sits in a flood zone."
+        },
+        "enrichment": {
+          "ssn": "900-01-0012",
+          "bureau": {
+            "found": true,
+            "prior_claims": 2,
+            "credit_band": "poor",
+            "occupation_class": "medium",
+            "flood_zone": true
+          },
+          "summary": "Irene Kowalski, a 61-year-old homeowner in South Carolina, owns a waterfront rental property with a coverage amount of $1,500,000. The property is located in a flood zone, and there are two prior water claims. The applicant has a poor credit band.",
+          "red_flags": [
+            "Prior water claims",
+            "Flood zone location",
+            "Poor credit band"
+          ],
+          "missing_fields": [],
+          "risk_notes": "The property is in a flood zone and has a history of water claims, which increases the risk of future claims. The applicant's poor credit band may indicate financial instability, which could affect their ability to manage or recover from losses."
+        }
+      },
+      "output": {
+        "score": 100,
+        "band": "high",
+        "factors": [
+          "Prior water claims",
+          "Flood zone location",
+          "Poor credit band"
+        ],
+        "llm_score": 85,
+        "llm_band": "high",
+        "deterministic_score": 100,
+        "deterministic_band": "high",
+        "agreed": true
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 408,
+        "completion_tokens": 45
+      }
+    },
+    {
+      "agent": "recommendation",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:13:30.835816+00:00",
+      "ended_at": "2026-10-09T15:13:35.319214+00:00",
+      "duration_ms": 4483,
+      "input": {
+        "intake": {
+          "ssn": "900-01-0012",
+          "full_name": "Irene Kowalski",
+          "age": 61,
+          "occupation": "owns a waterfront rental",
+          "coverage_type": "homeowners",
+          "coverage_amount": 1500000,
+          "state": "South Carolina",
+          "household": "waterfront rental",
+          "notes": "Two prior water claims. The house sits in a flood zone."
+        },
+        "enrichment": {
+          "ssn": "900-01-0012",
+          "bureau": {
+            "found": true,
+            "prior_claims": 2,
+            "credit_band": "poor",
+            "occupation_class": "medium",
+            "flood_zone": true
+          },
+          "summary": "Irene Kowalski, a 61-year-old homeowner in South Carolina, owns a waterfront rental property with a coverage amount of $1,500,000. The property is located in a flood zone, and there are two prior water claims. The applicant has a poor credit band.",
+          "red_flags": [
+            "Prior water claims",
+            "Flood zone location",
+            "Poor credit band"
+          ],
+          "missing_fields": [],
+          "risk_notes": "The property is in a flood zone and has a history of water claims, which increases the risk of future claims. The applicant's poor credit band may indicate financial instability, which could affect their ability to manage or recover from losses."
+        },
+        "risk": {
+          "score": 100,
+          "band": "high",
+          "factors": [
+            "Prior water claims",
+            "Flood zone location",
+            "Poor credit band"
+          ],
+          "llm_score": 85,
+          "llm_band": "high",
+          "deterministic_score": 100,
+          "deterministic_band": "high",
+          "agreed": true
+        }
+      },
+      "output": {
+        "decision": "deny",
+        "rationale": "The application presents a high-risk profile due to the property's location in a flood zone, a history of two prior water claims, and the applicant's poor credit band. These factors significantly increase the likelihood of future claims and financial instability, making the risk unacceptable for approval.",
+        "source": "model",
+        "model_decision": "deny",
+        "final_decision": "deny",
+        "guard_reason": null
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 487,
+        "completion_tokens": 70
+      },
+      "model_decision": "deny",
+      "final_decision": "deny",
+      "guard_reason": null
+    }
+  ]
+}

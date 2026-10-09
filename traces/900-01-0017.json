@@ -1,0 +1,196 @@
+{
+  "case_id": "900-01-0017",
+  "status": "escalated",
+  "raw_application": {
+    "submission": "Taylor Morgan called about a policy. No age, no address, no coverage type, and no amount. Occupation field says 'not sure'. SSN 900-01-0017.",
+    "ssn": "900-01-0017"
+  },
+  "intake": {
+    "ssn": "900-01-0017",
+    "full_name": "Taylor Morgan",
+    "age": null,
+    "occupation": "not sure",
+    "coverage_type": null,
+    "coverage_amount": null,
+    "state": null,
+    "household": null,
+    "notes": "Called about a policy. No age, no address, no coverage type, and no amount."
+  },
+  "enrichment": {
+    "ssn": "900-01-0017",
+    "bureau": {
+      "found": true,
+      "prior_claims": 0,
+      "credit_band": "unknown",
+      "occupation_class": "unknown",
+      "flood_zone": false
+    },
+    "summary": "The applicant, Taylor Morgan, has not provided essential information such as age, coverage type, coverage amount, and state. The bureau record indicates no prior claims, unknown credit band, and no flood zone designation.",
+    "red_flags": [],
+    "missing_fields": [
+      "age",
+      "coverage_type",
+      "coverage_amount",
+      "state"
+    ],
+    "risk_notes": "The applicant has not provided critical details necessary for underwriting, which may impact the risk assessment and policy determination."
+  },
+  "risk": {
+    "score": null,
+    "band": null,
+    "factors": [
+      "Missing essential information",
+      "No prior claims",
+      "No flood zone designation"
+    ],
+    "llm_score": 20,
+    "llm_band": "low",
+    "deterministic_score": 50,
+    "deterministic_band": "medium",
+    "agreed": false
+  },
+  "recommendation": {
+    "decision": "refer",
+    "rationale": "risk bands disagree: llm=low deterministic=medium",
+    "source": "escalation",
+    "model_decision": null,
+    "final_decision": "refer",
+    "guard_reason": null
+  },
+  "spans": [
+    {
+      "agent": "intake",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:14:43.188514+00:00",
+      "ended_at": "2026-10-09T15:14:48.106534+00:00",
+      "duration_ms": 4918,
+      "input": {
+        "raw_application": {
+          "submission": "Taylor Morgan called about a policy. No age, no address, no coverage type, and no amount. Occupation field says 'not sure'. SSN 900-01-0017.",
+          "ssn": "900-01-0017"
+        }
+      },
+      "output": {
+        "ssn": "900-01-0017",
+        "full_name": "Taylor Morgan",
+        "age": null,
+        "occupation": "not sure",
+        "coverage_type": null,
+        "coverage_amount": null,
+        "state": null,
+        "household": null,
+        "notes": "Called about a policy. No age, no address, no coverage type, and no amount."
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 194,
+        "completion_tokens": 95
+      }
+    },
+    {
+      "agent": "enrichment",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:14:48.106543+00:00",
+      "ended_at": "2026-10-09T15:14:53.421928+00:00",
+      "duration_ms": 5315,
+      "input": {
+        "intake": {
+          "ssn": "900-01-0017",
+          "full_name": "Taylor Morgan",
+          "age": null,
+          "occupation": "not sure",
+          "coverage_type": null,
+          "coverage_amount": null,
+          "state": null,
+          "household": null,
+          "notes": "Called about a policy. No age, no address, no coverage type, and no amount."
+        }
+      },
+      "output": {
+        "ssn": "900-01-0017",
+        "bureau": {
+          "found": true,
+          "prior_claims": 0,
+          "credit_band": "unknown",
+          "occupation_class": "unknown",
+          "flood_zone": false
+        },
+        "summary": "The applicant, Taylor Morgan, has not provided essential information such as age, coverage type, coverage amount, and state. The bureau record indicates no prior claims, unknown credit band, and no flood zone designation.",
+        "red_flags": [],
+        "missing_fields": [
+          "age",
+          "coverage_type",
+          "coverage_amount",
+          "state"
+        ],
+        "risk_notes": "The applicant has not provided critical details necessary for underwriting, which may impact the risk assessment and policy determination."
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 237,
+        "completion_tokens": 103
+      }
+    },
+    {
+      "agent": "risk_scoring",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:14:53.421938+00:00",
+      "ended_at": "2026-10-09T15:14:55.681527+00:00",
+      "duration_ms": 2260,
+      "input": {
+        "intake": {
+          "ssn": "900-01-0017",
+          "full_name": "Taylor Morgan",
+          "age": null,
+          "occupation": "not sure",
+          "coverage_type": null,
+          "coverage_amount": null,
+          "state": null,
+          "household": null,
+          "notes": "Called about a policy. No age, no address, no coverage type, and no amount."
+        },
+        "enrichment": {
+          "ssn": "900-01-0017",
+          "bureau": {
+            "found": true,
+            "prior_claims": 0,
+            "credit_band": "unknown",
+            "occupation_class": "unknown",
+            "flood_zone": false
+          },
+          "summary": "The applicant, Taylor Morgan, has not provided essential information such as age, coverage type, coverage amount, and state. The bureau record indicates no prior claims, unknown credit band, and no flood zone designation.",
+          "red_flags": [],
+          "missing_fields": [
+            "age",
+            "coverage_type",
+            "coverage_amount",
+            "state"
+          ],
+          "risk_notes": "The applicant has not provided critical details necessary for underwriting, which may impact the risk assessment and policy determination."
+        }
+      },
+      "output": {
+        "score": null,
+        "band": null,
+        "factors": [
+          "Missing essential information",
+          "No prior claims",
+          "No flood zone designation"
+        ],
+        "llm_score": 20,
+        "llm_band": "low",
+        "deterministic_score": 50,
+        "deterministic_band": "medium",
+        "agreed": false
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 343,
+        "completion_tokens": 39
+      }
+    }
+  ]
+}

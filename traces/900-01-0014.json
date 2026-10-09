@@ -1,0 +1,262 @@
+{
+  "case_id": "900-01-0014",
+  "status": "completed",
+  "raw_application": {
+    "submission": "Paula Griffin, 55, fishing guide in North Carolina. Beach cottage, $1,100,000 homeowners requested. Two water claims. Flood zone confirmed. SSN 900-01-0014.",
+    "ssn": "900-01-0014"
+  },
+  "intake": {
+    "ssn": "900-01-0014",
+    "full_name": "Paula Griffin",
+    "age": 55,
+    "occupation": "fishing guide",
+    "coverage_type": "homeowners",
+    "coverage_amount": 1100000,
+    "state": "North Carolina",
+    "household": "Beach cottage",
+    "notes": "Two water claims. Flood zone confirmed."
+  },
+  "enrichment": {
+    "ssn": "900-01-0014",
+    "bureau": {
+      "found": true,
+      "prior_claims": 2,
+      "credit_band": "fair",
+      "occupation_class": "high",
+      "flood_zone": true
+    },
+    "summary": "Paula Griffin, a 55-year-old fishing guide in North Carolina, is applying for homeowners coverage of $1,100,000 for a beach cottage. The property is in a flood zone, and there are prior water claims noted in the application.",
+    "red_flags": [
+      "Flood zone confirmed",
+      "Prior water claims",
+      "High-risk occupation"
+    ],
+    "missing_fields": [],
+    "risk_notes": "The applicant's property is located in a flood zone, which increases the risk of water damage. The prior water claims indicate a history of property damage, which may affect the likelihood of future claims. The occupation as a fishing guide is considered high-risk, which may impact the premium and coverage terms."
+  },
+  "risk": {
+    "score": 100,
+    "band": "high",
+    "factors": [
+      "Flood zone confirmed",
+      "Prior water claims",
+      "High-risk occupation"
+    ],
+    "llm_score": 85,
+    "llm_band": "high",
+    "deterministic_score": 100,
+    "deterministic_band": "high",
+    "agreed": true
+  },
+  "recommendation": {
+    "decision": "deny",
+    "rationale": "The application presents a high-risk profile due to the property being in a flood zone, a history of prior water claims, and the applicant's occupation as a fishing guide, which is considered high-risk. These factors significantly increase the likelihood of future claims and pose a substantial risk to the insurer.",
+    "source": "model",
+    "model_decision": "deny",
+    "final_decision": "deny",
+    "guard_reason": null
+  },
+  "spans": [
+    {
+      "agent": "intake",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:13:57.097712+00:00",
+      "ended_at": "2026-10-09T15:14:02.438458+00:00",
+      "duration_ms": 5341,
+      "input": {
+        "raw_application": {
+          "submission": "Paula Griffin, 55, fishing guide in North Carolina. Beach cottage, $1,100,000 homeowners requested. Two water claims. Flood zone confirmed. SSN 900-01-0014.",
+          "ssn": "900-01-0014"
+        }
+      },
+      "output": {
+        "ssn": "900-01-0014",
+        "full_name": "Paula Griffin",
+        "age": 55,
+        "occupation": "fishing guide",
+        "coverage_type": "homeowners",
+        "coverage_amount": 1100000,
+        "state": "North Carolina",
+        "household": "Beach cottage",
+        "notes": "Two water claims. Flood zone confirmed."
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 204,
+        "completion_tokens": 102
+      }
+    },
+    {
+      "agent": "enrichment",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:14:02.438467+00:00",
+      "ended_at": "2026-10-09T15:14:10.461815+00:00",
+      "duration_ms": 8023,
+      "input": {
+        "intake": {
+          "ssn": "900-01-0014",
+          "full_name": "Paula Griffin",
+          "age": 55,
+          "occupation": "fishing guide",
+          "coverage_type": "homeowners",
+          "coverage_amount": 1100000,
+          "state": "North Carolina",
+          "household": "Beach cottage",
+          "notes": "Two water claims. Flood zone confirmed."
+        }
+      },
+      "output": {
+        "ssn": "900-01-0014",
+        "bureau": {
+          "found": true,
+          "prior_claims": 2,
+          "credit_band": "fair",
+          "occupation_class": "high",
+          "flood_zone": true
+        },
+        "summary": "Paula Griffin, a 55-year-old fishing guide in North Carolina, is applying for homeowners coverage of $1,100,000 for a beach cottage. The property is in a flood zone, and there are prior water claims noted in the application.",
+        "red_flags": [
+          "Flood zone confirmed",
+          "Prior water claims",
+          "High-risk occupation"
+        ],
+        "missing_fields": [],
+        "risk_notes": "The applicant's property is located in a flood zone, which increases the risk of water damage. The prior water claims indicate a history of property damage, which may affect the likelihood of future claims. The occupation as a fishing guide is considered high-risk, which may impact the premium and coverage terms."
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 244,
+        "completion_tokens": 156
+      }
+    },
+    {
+      "agent": "risk_scoring",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:14:10.461839+00:00",
+      "ended_at": "2026-10-09T15:14:13.306381+00:00",
+      "duration_ms": 2845,
+      "input": {
+        "intake": {
+          "ssn": "900-01-0014",
+          "full_name": "Paula Griffin",
+          "age": 55,
+          "occupation": "fishing guide",
+          "coverage_type": "homeowners",
+          "coverage_amount": 1100000,
+          "state": "North Carolina",
+          "household": "Beach cottage",
+          "notes": "Two water claims. Flood zone confirmed."
+        },
+        "enrichment": {
+          "ssn": "900-01-0014",
+          "bureau": {
+            "found": true,
+            "prior_claims": 2,
+            "credit_band": "fair",
+            "occupation_class": "high",
+            "flood_zone": true
+          },
+          "summary": "Paula Griffin, a 55-year-old fishing guide in North Carolina, is applying for homeowners coverage of $1,100,000 for a beach cottage. The property is in a flood zone, and there are prior water claims noted in the application.",
+          "red_flags": [
+            "Flood zone confirmed",
+            "Prior water claims",
+            "High-risk occupation"
+          ],
+          "missing_fields": [],
+          "risk_notes": "The applicant's property is located in a flood zone, which increases the risk of water damage. The prior water claims indicate a history of property damage, which may affect the likelihood of future claims. The occupation as a fishing guide is considered high-risk, which may impact the premium and coverage terms."
+        }
+      },
+      "output": {
+        "score": 100,
+        "band": "high",
+        "factors": [
+          "Flood zone confirmed",
+          "Prior water claims",
+          "High-risk occupation"
+        ],
+        "llm_score": 85,
+        "llm_band": "high",
+        "deterministic_score": 100,
+        "deterministic_band": "high",
+        "agreed": true
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 403,
+        "completion_tokens": 39
+      }
+    },
+    {
+      "agent": "recommendation",
+      "attempt": 1,
+      "started_at": "2026-10-09T15:14:13.306402+00:00",
+      "ended_at": "2026-10-09T15:14:17.882721+00:00",
+      "duration_ms": 4576,
+      "input": {
+        "intake": {
+          "ssn": "900-01-0014",
+          "full_name": "Paula Griffin",
+          "age": 55,
+          "occupation": "fishing guide",
+          "coverage_type": "homeowners",
+          "coverage_amount": 1100000,
+          "state": "North Carolina",
+          "household": "Beach cottage",
+          "notes": "Two water claims. Flood zone confirmed."
+        },
+        "enrichment": {
+          "ssn": "900-01-0014",
+          "bureau": {
+            "found": true,
+            "prior_claims": 2,
+            "credit_band": "fair",
+            "occupation_class": "high",
+            "flood_zone": true
+          },
+          "summary": "Paula Griffin, a 55-year-old fishing guide in North Carolina, is applying for homeowners coverage of $1,100,000 for a beach cottage. The property is in a flood zone, and there are prior water claims noted in the application.",
+          "red_flags": [
+            "Flood zone confirmed",
+            "Prior water claims",
+            "High-risk occupation"
+          ],
+          "missing_fields": [],
+          "risk_notes": "The applicant's property is located in a flood zone, which increases the risk of water damage. The prior water claims indicate a history of property damage, which may affect the likelihood of future claims. The occupation as a fishing guide is considered high-risk, which may impact the premium and coverage terms."
+        },
+        "risk": {
+          "score": 100,
+          "band": "high",
+          "factors": [
+            "Flood zone confirmed",
+            "Prior water claims",
+            "High-risk occupation"
+          ],
+          "llm_score": 85,
+          "llm_band": "high",
+          "deterministic_score": 100,
+          "deterministic_band": "high",
+          "agreed": true
+        }
+      },
+      "output": {
+        "decision": "deny",
+        "rationale": "The application presents a high-risk profile due to the property being in a flood zone, a history of prior water claims, and the applicant's occupation as a fishing guide, which is considered high-risk. These factors significantly increase the likelihood of future claims and pose a substantial risk to the insurer.",
+        "source": "model",
+        "model_decision": "deny",
+        "final_decision": "deny",
+        "guard_reason": null
+      },
+      "status": "ok",
+      "error": null,
+      "token_usage": {
+        "prompt_tokens": 482,
+        "completion_tokens": 74
+      },
+      "model_decision": "deny",
+      "final_decision": "deny",
+      "guard_reason": null
+    }
+  ]
+}
