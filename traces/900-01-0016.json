@@ -63,9 +63,9 @@
     {
       "agent": "intake",
       "attempt": 1,
-      "started_at": "2026-10-09T15:14:31.445439+00:00",
-      "ended_at": "2026-10-09T15:14:35.582088+00:00",
-      "duration_ms": 4137,
+      "started_at": "2026-10-09T20:16:58.182471+00:00",
+      "ended_at": "2026-10-09T20:17:01.744870+00:00",
+      "duration_ms": 3562,
       "input": {
         "raw_application": {
           "submission": "Name on the form is Samir Qureshi. He wrote 'need insurance' and left age, state, occupation, and coverage amount blank. SSN 900-01-0016.",
@@ -93,9 +93,9 @@
     {
       "agent": "enrichment",
       "attempt": 1,
-      "started_at": "2026-10-09T15:14:35.582109+00:00",
-      "ended_at": "2026-10-09T15:14:40.710997+00:00",
-      "duration_ms": 5129,
+      "started_at": "2026-10-09T20:17:01.744917+00:00",
+      "ended_at": "2026-10-09T20:17:06.125018+00:00",
+      "duration_ms": 4380,
       "input": {
         "intake": {
           "ssn": "900-01-0016",
@@ -140,9 +140,9 @@
     {
       "agent": "risk_scoring",
       "attempt": 1,
-      "started_at": "2026-10-09T15:14:40.711031+00:00",
-      "ended_at": "2026-10-09T15:14:43.187675+00:00",
-      "duration_ms": 2477,
+      "started_at": "2026-10-09T20:17:06.125033+00:00",
+      "ended_at": "2026-10-09T20:17:08.267023+00:00",
+      "duration_ms": 2142,
       "input": {
         "intake": {
           "ssn": "900-01-0016",

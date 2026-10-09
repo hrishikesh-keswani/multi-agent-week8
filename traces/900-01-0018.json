@@ -64,9 +64,9 @@
     {
       "agent": "intake",
       "attempt": 1,
-      "started_at": "2026-10-09T15:14:55.683318+00:00",
-      "ended_at": "2026-10-09T15:15:00.568736+00:00",
-      "duration_ms": 4885,
+      "started_at": "2026-10-09T20:17:18.690006+00:00",
+      "ended_at": "2026-10-09T20:17:22.885796+00:00",
+      "duration_ms": 4196,
       "input": {
         "raw_application": {
           "submission": "Application for Casey Nguyen. State missing. Coverage amount blank. Age not given. Mentions an apartment but not the coverage type. SSN 900-01-0018.",
@@ -94,9 +94,9 @@
     {
       "agent": "enrichment",
       "attempt": 1,
-      "started_at": "2026-10-09T15:15:00.568753+00:00",
-      "ended_at": "2026-10-09T15:15:06.603406+00:00",
-      "duration_ms": 6035,
+      "started_at": "2026-10-09T20:17:22.885805+00:00",
+      "ended_at": "2026-10-09T20:17:28.130299+00:00",
+      "duration_ms": 5245,
       "input": {
         "intake": {
           "ssn": "900-01-0018",
@@ -140,9 +140,9 @@
     {
       "agent": "risk_scoring",
       "attempt": 1,
-      "started_at": "2026-10-09T15:15:06.603427+00:00",
-      "ended_at": "2026-10-09T15:15:09.702996+00:00",
-      "duration_ms": 3100,
+      "started_at": "2026-10-09T20:17:28.130333+00:00",
+      "ended_at": "2026-10-09T20:17:30.817813+00:00",
+      "duration_ms": 2687,
       "input": {
         "intake": {
           "ssn": "900-01-0018",

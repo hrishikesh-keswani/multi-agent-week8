@@ -61,9 +61,9 @@
     {
       "agent": "intake",
       "attempt": 1,
-      "started_at": "2026-10-09T15:14:43.188514+00:00",
-      "ended_at": "2026-10-09T15:14:48.106534+00:00",
-      "duration_ms": 4918,
+      "started_at": "2026-10-09T20:17:08.270963+00:00",
+      "ended_at": "2026-10-09T20:17:12.338932+00:00",
+      "duration_ms": 4068,
       "input": {
         "raw_application": {
           "submission": "Taylor Morgan called about a policy. No age, no address, no coverage type, and no amount. Occupation field says 'not sure'. SSN 900-01-0017.",
@@ -91,9 +91,9 @@
     {
       "agent": "enrichment",
       "attempt": 1,
-      "started_at": "2026-10-09T15:14:48.106543+00:00",
-      "ended_at": "2026-10-09T15:14:53.421928+00:00",
-      "duration_ms": 5315,
+      "started_at": "2026-10-09T20:17:12.338950+00:00",
+      "ended_at": "2026-10-09T20:17:16.747885+00:00",
+      "duration_ms": 4409,
       "input": {
         "intake": {
           "ssn": "900-01-0017",
@@ -136,9 +136,9 @@
     {
       "agent": "risk_scoring",
       "attempt": 1,
-      "started_at": "2026-10-09T15:14:53.421938+00:00",
-      "ended_at": "2026-10-09T15:14:55.681527+00:00",
-      "duration_ms": 2260,
+      "started_at": "2026-10-09T20:17:16.747918+00:00",
+      "ended_at": "2026-10-09T20:17:18.689315+00:00",
+      "duration_ms": 1941,
       "input": {
         "intake": {
           "ssn": "900-01-0017",

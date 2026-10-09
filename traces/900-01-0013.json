@@ -64,9 +64,9 @@
     {
       "agent": "intake",
       "attempt": 1,
-      "started_at": "2026-10-09T15:13:35.320373+00:00",
-      "ended_at": "2026-10-09T15:13:40.656740+00:00",
-      "duration_ms": 5336,
+      "started_at": "2026-10-09T20:16:09.829125+00:00",
+      "ended_at": "2026-10-09T20:16:14.331740+00:00",
+      "duration_ms": 4503,
       "input": {
         "raw_application": {
           "submission": "Malik Bryant, 41, commercial diver in Mississippi. Wants $700,000 homeowners. One recent flood claim and a theft claim. High-risk occupation. SSN 900-01-0013.",
@@ -94,9 +94,9 @@
     {
       "agent": "enrichment",
       "attempt": 1,
-      "started_at": "2026-10-09T15:13:40.656764+00:00",
-      "ended_at": "2026-10-09T15:13:48.949281+00:00",
-      "duration_ms": 8293,
+      "started_at": "2026-10-09T20:16:14.331763+00:00",
+      "ended_at": "2026-10-09T20:16:21.453869+00:00",
+      "duration_ms": 7122,
       "input": {
         "intake": {
           "ssn": "900-01-0013",
@@ -140,9 +140,9 @@
     {
       "agent": "risk_scoring",
       "attempt": 1,
-      "started_at": "2026-10-09T15:13:48.949300+00:00",
-      "ended_at": "2026-10-09T15:13:52.510341+00:00",
-      "duration_ms": 3561,
+      "started_at": "2026-10-09T20:16:21.453885+00:00",
+      "ended_at": "2026-10-09T20:16:24.628708+00:00",
+      "duration_ms": 3175,
       "input": {
         "intake": {
           "ssn": "900-01-0013",
@@ -202,9 +202,9 @@
     {
       "agent": "recommendation",
       "attempt": 1,
-      "started_at": "2026-10-09T15:13:52.510358+00:00",
-      "ended_at": "2026-10-09T15:13:57.096490+00:00",
-      "duration_ms": 4586,
+      "started_at": "2026-10-09T20:16:24.628728+00:00",
+      "ended_at": "2026-10-09T20:16:28.725471+00:00",
+      "duration_ms": 4097,
       "input": {
         "intake": {
           "ssn": "900-01-0013",

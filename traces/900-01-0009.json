@@ -60,9 +60,9 @@
     {
       "agent": "intake",
       "attempt": 1,
-      "started_at": "2026-10-09T15:12:12.389009+00:00",
-      "ended_at": "2026-10-09T15:12:17.801557+00:00",
-      "duration_ms": 5413,
+      "started_at": "2026-10-09T20:14:56.949255+00:00",
+      "ended_at": "2026-10-09T20:15:01.671395+00:00",
+      "duration_ms": 4722,
       "input": {
         "raw_application": {
           "submission": "Robert Hale, 58, commercial fisherman in Florida. Wants $1,200,000 homeowners on a beach house. Two water claims in the last three years. Property is in a flood zone. SSN 900-01-0009.",
@@ -90,9 +90,9 @@
     {
       "agent": "enrichment",
       "attempt": 1,
-      "started_at": "2026-10-09T15:12:17.801574+00:00",
-      "ended_at": "2026-10-09T15:12:25.686432+00:00",
-      "duration_ms": 7885,
+      "started_at": "2026-10-09T20:15:01.671429+00:00",
+      "ended_at": "2026-10-09T20:15:08.653485+00:00",
+      "duration_ms": 6982,
       "input": {
         "intake": {
           "ssn": "900-01-0009",
@@ -134,9 +134,9 @@
     {
       "agent": "risk_scoring",
       "attempt": 1,
-      "started_at": "2026-10-09T15:12:25.686451+00:00",
-      "ended_at": "2026-10-09T15:12:28.935251+00:00",
-      "duration_ms": 3249,
+      "started_at": "2026-10-09T20:15:08.653500+00:00",
+      "ended_at": "2026-10-09T20:15:11.499217+00:00",
+      "duration_ms": 2846,
       "input": {
         "intake": {
           "ssn": "900-01-0009",
@@ -192,9 +192,9 @@
     {
       "agent": "recommendation",
       "attempt": 1,
-      "started_at": "2026-10-09T15:12:28.935291+00:00",
-      "ended_at": "2026-10-09T15:12:33.336273+00:00",
-      "duration_ms": 4401,
+      "started_at": "2026-10-09T20:15:11.499233+00:00",
+      "ended_at": "2026-10-09T20:15:15.239480+00:00",
+      "duration_ms": 3740,
       "input": {
         "intake": {
           "ssn": "900-01-0009",

@@ -57,9 +57,9 @@
     {
       "agent": "intake",
       "attempt": 1,
-      "started_at": "2026-10-09T15:10:11.710835+00:00",
-      "ended_at": "2026-10-09T15:10:16.812912+00:00",
-      "duration_ms": 5102,
+      "started_at": "2026-10-09T20:13:14.149302+00:00",
+      "ended_at": "2026-10-09T20:13:18.666011+00:00",
+      "duration_ms": 4517,
       "input": {
         "raw_application": {
           "submission": "Daniel Okonkwo, 44, high school teacher in Wisconsin. Wants $320,000 homeowners on a primary residence. No claims in the last ten years. Married, two children. SSN 900-01-0002.",
@@ -87,9 +87,9 @@
     {
       "agent": "enrichment",
       "attempt": 1,
-      "started_at": "2026-10-09T15:10:16.812932+00:00",
-      "ended_at": "2026-10-09T15:10:23.598881+00:00",
-      "duration_ms": 6786,
+      "started_at": "2026-10-09T20:13:18.666026+00:00",
+      "ended_at": "2026-10-09T20:13:24.500640+00:00",
+      "duration_ms": 5835,
       "input": {
         "intake": {
           "ssn": "900-01-0002",
@@ -127,9 +127,9 @@
     {
       "agent": "risk_scoring",
       "attempt": 1,
-      "started_at": "2026-10-09T15:10:23.598904+00:00",
-      "ended_at": "2026-10-09T15:10:26.886104+00:00",
-      "duration_ms": 3287,
+      "started_at": "2026-10-09T20:13:24.500654+00:00",
+      "ended_at": "2026-10-09T20:13:27.366343+00:00",
+      "duration_ms": 2866,
       "input": {
         "intake": {
           "ssn": "900-01-0002",
@@ -182,9 +182,9 @@
     {
       "agent": "recommendation",
       "attempt": 1,
-      "started_at": "2026-10-09T15:10:26.886115+00:00",
-      "ended_at": "2026-10-09T15:10:30.867119+00:00",
-      "duration_ms": 3981,
+      "started_at": "2026-10-09T20:13:27.366373+00:00",
+      "ended_at": "2026-10-09T20:13:30.792166+00:00",
+      "duration_ms": 3426,
       "input": {
         "intake": {
           "ssn": "900-01-0002",
